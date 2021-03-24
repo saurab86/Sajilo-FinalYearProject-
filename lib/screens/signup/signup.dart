@@ -17,10 +17,10 @@ class SignUp extends StatelessWidget {
     // ignore: deprecated_member_use
     final _firestore = Firestore.instance;
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SafeArea(
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 140),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,

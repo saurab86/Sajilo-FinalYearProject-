@@ -17,10 +17,10 @@ class Login extends StatelessWidget {
     ScreenScaler scale = ScreenScaler()..init(context);
     AuthService data = Provider.of<AuthService>(context);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,

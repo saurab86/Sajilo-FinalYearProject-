@@ -244,6 +244,7 @@ class _HousePaintingBookingState extends State<HousePaintingBooking> {
     };
     _ref.push().set(bookinginfo);
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) => AlertDialog(
               shape: RoundedRectangleBorder(

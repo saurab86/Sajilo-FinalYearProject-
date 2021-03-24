@@ -17,6 +17,7 @@ class _NavHomeState extends State<NavHome> {
 
   Future<bool> _onBackPressed() {
     return showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (context) => AlertDialog(
               shape: RoundedRectangleBorder(

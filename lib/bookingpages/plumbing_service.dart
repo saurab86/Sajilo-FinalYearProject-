@@ -240,6 +240,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
     };
     _ref.push().set(bookinginfo);
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) => AlertDialog(
               shape: RoundedRectangleBorder(

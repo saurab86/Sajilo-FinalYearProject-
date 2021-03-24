@@ -218,6 +218,7 @@ class _CarBookingState extends State<CarBooking> {
     _ref.push().set(bookinginfo);
 
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) => AlertDialog(
               shape: RoundedRectangleBorder(

@@ -245,6 +245,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
     _ref.push().set(bookinginfo);
 
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) => AlertDialog(
               shape: RoundedRectangleBorder(

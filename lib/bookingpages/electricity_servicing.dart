@@ -231,6 +231,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
     };
     _ref.push().set(bookinginfo);
     showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) => AlertDialog(
               shape: RoundedRectangleBorder(

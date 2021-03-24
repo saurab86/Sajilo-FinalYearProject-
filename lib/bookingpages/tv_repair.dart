@@ -160,6 +160,7 @@ class _TvRepairServiceState extends State<TvRepairService> {
                           _wardController.text.isEmpty ||
                           _mobilenumberController.text.isEmpty) {
                         showDialog(
+                            barrierDismissible: false,
                             context: context,
                             builder: (_) => AlertDialog(
                                   shape: RoundedRectangleBorder(

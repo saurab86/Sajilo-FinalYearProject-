@@ -46,6 +46,7 @@ class SignUp extends StatelessWidget {
                     _firestore.collection('Users').add({
                       'email': data.email,
                       'userID': data.userID,
+                      'password': data.password,
                     });
                   }).whenComplete(() {
                     if (data.userLoggedIn) {

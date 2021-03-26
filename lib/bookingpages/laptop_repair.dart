@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
@@ -240,11 +241,16 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => NavHome()))
-                          .then((value) {
-                        this.dispose();
-                      });
+                      Fluttertoast.showToast(
+                              msg: "Booked Successfully",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 4,
+                              backgroundColor: Colors.teal,
+                              textColor: Colors.white,
+                              fontSize: 16.0)
+                          .then((value) => Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (_) => NavHome())));
                     },
                     child: Text(
                       'OK',

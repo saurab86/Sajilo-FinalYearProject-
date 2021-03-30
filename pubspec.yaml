@@ -32,6 +32,7 @@ dependencies:
   http: any
   firebase_messaging: ^7.0.3
   fluttertoast: ^8.0.3
+  shared_preferences: ^2.0.5
 
 dev_dependencies:
   flutter_test:

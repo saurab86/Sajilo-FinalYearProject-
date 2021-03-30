@@ -9,9 +9,10 @@ import 'package:http/http.dart' as http;
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
   //get http => null;
+
   FirebaseAuth auth() => _auth;
+  Stream<User> get authState => _auth.idTokenChanges();
   GoogleSignIn _googleSignIn = GoogleSignIn();
   FacebookLogin _fbSignIn = FacebookLogin();
   TwitterLogin _twitterSignIn = TwitterLogin(
@@ -132,6 +133,8 @@ class AuthService {
       userInfo = null;
       message = null;
       userLoggedIn = false;
+      userID = null;
+      email = null;
     }
   }
 }

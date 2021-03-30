@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../screens/welcome/welcome.dart';
 import '../../../services/auth.dart';
 import '../../../constants.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({this.data, this.scale});
@@ -22,12 +26,21 @@ class LogoutButton extends StatelessWidget {
         //highlightColor: primaryHighLightColor,
 
         onPressed: () {
+          _signOut();
           data.signOut().whenComplete(() {
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => WelcomeScreen()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => new WelcomeScreen()));
           });
         },
       ),
     );
+  }
+
+  Future<void> _signOut() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    sharedPreferences.remove('email');
+    await _auth.signOut();
+    //await _signOut();
   }
 }

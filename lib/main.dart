@@ -16,8 +16,14 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => AuthService(),
+    return MultiProvider(
+      providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        ),
+        StreamProvider(
+            create: (context) => context.read()<AuthService>().authState)
+      ],
       child: MaterialApp(
         title: 'Sajilo',
         home: WelcomeScreen(),

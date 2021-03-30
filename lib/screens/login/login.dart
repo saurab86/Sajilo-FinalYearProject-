@@ -8,8 +8,10 @@ import '../../services/auth.dart';
 import '../../widgets/question_row.dart';
 //import '../home/home.dart';
 import '../signup/signup.dart';
-import '../../widgets/custom_text_field.dart';
+// import '../../widgets/custom_text_field.dart';
 import '../../widgets/sign_button.dart';
+
+TextEditingController _emailController;
 
 class Login extends StatelessWidget {
   @override
@@ -41,10 +43,18 @@ class Login extends StatelessWidget {
               ),
               SizedBox(height: scale.getHeight(2.0)),
               Padding(padding: EdgeInsets.only(top: 2.0)),
-              CustomTextField(
-                keyboardType: TextInputType.emailAddress,
-                hintText: 'Enter Your Email',
-                onChanged: (value) => data.email = value,
+              Material(
+                elevation: 8,
+                shape: const StadiumBorder(),
+                shadowColor: Color(0xFFFB6158).withOpacity(0.2),
+                child: TextFormField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  style: TextStyle(fontSize: 18),
+                  decoration: InputDecoration(
+                      hintText: 'Enter Your Email', icon: Icon(Icons.email)),
+                  onChanged: (value) => data.email = value,
+                ),
               ),
               const SizedBox(height: 12.0),
               CustomTextField1(
@@ -55,6 +65,9 @@ class Login extends StatelessWidget {
               SignButton(
                 text: 'Log in',
                 onPressed: () {
+                  // final SharedPreferences sharedPreferences =
+                  //     await SharedPreferences.getInstance();
+                  // sharedPreferences.setString('email', _emailController.text);
                   data.signInWithEmailAndPassword().whenComplete(() {
                     if (data.userLoggedIn) {
                       Navigator.pushReplacement(context,

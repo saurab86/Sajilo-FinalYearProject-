@@ -39,22 +39,20 @@ class _SpinkitState extends State<Spinkit> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal[300],
+      backgroundColor: Colors.blueGrey,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: SpinKitCubeGrid(
-              size: 80.0,
-              color: Colors.white,
-            ),
+            child: SpinKitChasingDots(size: 80.0, color: Colors.red),
           ),
           SizedBox(
             height: 18.0,
           ),
           Text(
             "LOADING...",
-            style: TextStyle(fontFamily: "Rubik", fontSize: 16.0),
+            style: TextStyle(
+                fontFamily: "Rubik", fontSize: 16.0, color: Colors.white),
           )
         ],
       ),

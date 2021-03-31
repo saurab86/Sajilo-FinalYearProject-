@@ -44,7 +44,7 @@ class _SpinkitState extends State<Spinkit> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: SpinKitChasingDots(size: 80.0, color: Colors.red),
+            child: SpinKitChasingDots(size: 80.0, color: Colors.orange),
           ),
           SizedBox(
             height: 18.0,

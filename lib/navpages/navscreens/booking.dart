@@ -359,6 +359,7 @@ class _BookingState extends State<Booking> {
       body: Container(
         color: Colors.white,
         child: FirebaseAnimatedList(
+            physics: BouncingScrollPhysics(),
             query: ref,
             itemBuilder: (BuildContext context, DataSnapshot snapshot,
                 Animation<double> animation, int index) {

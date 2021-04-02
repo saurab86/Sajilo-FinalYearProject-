@@ -57,6 +57,7 @@ class _MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+        physics: BouncingScrollPhysics(),
         itemCount: 10,
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

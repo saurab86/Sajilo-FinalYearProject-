@@ -42,6 +42,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
     return Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             automaticallyImplyLeading: true,

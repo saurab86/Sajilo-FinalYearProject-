@@ -41,6 +41,7 @@ class _FurnitureBookingState extends State<FurnitureBooking> {
     return Scaffold(
         backgroundColor: Colors.teal,
         body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
               leading: BackButton(

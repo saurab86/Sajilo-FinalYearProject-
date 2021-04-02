@@ -32,6 +32,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             leading: BackButton(

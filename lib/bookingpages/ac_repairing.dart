@@ -41,6 +41,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             automaticallyImplyLeading: true,

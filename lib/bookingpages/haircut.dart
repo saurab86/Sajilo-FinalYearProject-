@@ -41,6 +41,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
     return Scaffold(
         backgroundColor: Colors.teal,
         body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
               automaticallyImplyLeading: true,

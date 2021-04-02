@@ -45,6 +45,7 @@ class _HousePaintingBookingState extends State<HousePaintingBooking> {
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             automaticallyImplyLeading: true,

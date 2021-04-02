@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-// import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/screens/welcome/welcome.dart';
+//import 'navpages/navscreens/navhandling.dart';
 import 'screens/welcome/welcome.dart';
 import 'services/auth.dart';
+import 'services/authenticationprovider.dart';
 // import 'package:sajilo/theme.dart';
 
 void main() async {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthService(),
         ),
         StreamProvider(
-            create: (context) => context.read()<AuthService>().authState)
+            create: (contex) => contex.read()<AuthenticationProvider>().authState)
       ],
       child: MaterialApp(
         title: 'Sajilo',

@@ -32,7 +32,7 @@ class Account extends StatelessWidget {
             SizedBox(
               height: 5.0,
             ),
-            Text(data.userID)
+            //Text(data.userID)
           ],
         ),
       ),

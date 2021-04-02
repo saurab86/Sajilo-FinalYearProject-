@@ -42,7 +42,6 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             expandedHeight: 250.0,

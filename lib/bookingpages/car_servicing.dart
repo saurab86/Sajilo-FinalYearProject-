@@ -32,6 +32,7 @@ class _CarBookingState extends State<CarBooking> {
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
             expandedHeight: 250.0,

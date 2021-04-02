@@ -2,6 +2,6 @@
 # Final Year Project
 ### Title : Sajilo
 
-* Saurab 
-* Sisir
-* Kiran
+* Saurab Karki
+* Sisir Khanal
+* Kiran Aryal

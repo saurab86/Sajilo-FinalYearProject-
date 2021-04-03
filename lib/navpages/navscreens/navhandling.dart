@@ -13,7 +13,7 @@ class NavHome extends StatefulWidget {
 
 class _NavHomeState extends State<NavHome> {
   var _page = 0;
-  final pages = [MainHome(), Booking(), Info(), Account()];
+  final pages = [MainHome(), Booking(), Info(), Account(),];
 
   Future<bool> _onBackPressed() {
     return showDialog(
@@ -74,7 +74,7 @@ class _NavHomeState extends State<NavHome> {
             ),
             Icon(Icons.book, size: 30),
             Icon(Icons.info_outline, size: 30),
-            Icon(Icons.perm_identity, size: 30)
+            Icon(Icons.perm_identity, size: 30),
           ],
           height: 52.0,
           animationDuration: Duration(milliseconds: 500),

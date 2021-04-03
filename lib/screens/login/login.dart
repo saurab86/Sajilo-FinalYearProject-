@@ -10,7 +10,7 @@ import '../../widgets/question_row.dart';
 import '../signup/signup.dart';
 // import '../../widgets/custom_text_field.dart';
 import '../../widgets/sign_button.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 TextEditingController _emailController;
 
 class Login extends StatelessWidget {
@@ -66,6 +66,7 @@ class Login extends StatelessWidget {
               SignButton(
                 text: 'Log in',
                 onPressed: () {
+                  addStringToSF();
                   // final SharedPreferences sharedPreferences =
                   //     await SharedPreferences.getInstance();
                   // sharedPreferences.setString('email', _emailController.text);
@@ -108,5 +109,11 @@ class Login extends StatelessWidget {
       ),
     );
   }
+}
+
+addStringToSF() async{
+final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+                   sharedPreferences.setString('email', _emailController.text);
 }
 

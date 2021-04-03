@@ -6,7 +6,7 @@ import 'package:sajilo/screens/welcome/welcome.dart';
 import 'screens/welcome/welcome.dart';
 import 'services/auth.dart';
 import 'services/authenticationprovider.dart';
-// import 'package:sajilo/theme.dart';
+// import 'package:sajilo/theme.dart';'
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,3 +34,13 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// Future<void> authenticate() async{
+//   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+//   String email = sharedPreferences.getString('email');
+//   if (email!=null) {
+//     return NavHome();
+//   } else {
+//     return WelcomeScreen();
+//   }
+// }

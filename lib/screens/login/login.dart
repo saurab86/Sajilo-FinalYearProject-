@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 //import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/widgets/custom_password_feild.dart';
 import 'package:sajilo/widgets/spinkit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
 import '../../widgets/question_row.dart';
 //import '../home/home.dart';
@@ -66,9 +67,7 @@ class Login extends StatelessWidget {
               SignButton(
                 text: 'Log in',
                 onPressed: () {
-                  // final SharedPreferences sharedPreferences =
-                  //     await SharedPreferences.getInstance();
-                  // sharedPreferences.setString('email', _emailController.text);
+                  addStringToSF();
                   data.signInWithEmailAndPassword().whenComplete(() {
                     if (data.userLoggedIn) {
                       Navigator.pushReplacement(context,
@@ -110,3 +109,8 @@ class Login extends StatelessWidget {
   }
 }
 
+addStringToSF() async{
+final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+                   sharedPreferences.setString('email', _emailController.text);
+}

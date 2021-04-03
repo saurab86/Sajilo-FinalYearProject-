@@ -12,7 +12,8 @@ class AuthService {
   //get http => null;
 
   FirebaseAuth auth() => _auth;
-  Stream<User> get authState => _auth.idTokenChanges();
+  Stream<User> get authStateChanges => _auth.authStateChanges();
+  // _auth.idTokenChanges();
   GoogleSignIn _googleSignIn = GoogleSignIn();
   FacebookLogin _fbSignIn = FacebookLogin();
   TwitterLogin _twitterSignIn = TwitterLogin(
@@ -42,6 +43,7 @@ class AuthService {
   // Sign in with Email & Password
 
   Future signInWithEmailAndPassword() async {
+    try{
     assert(email != null && password != null);
     UserCredential result = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
@@ -51,6 +53,10 @@ class AuthService {
     userInfo = user.email;
     userID = user.uid;
     message = 'Welcome to your account';
+    }
+    on FirebaseAuthException catch(e){
+      return e.message;
+    }
   }
 
   // Sign in with Google

@@ -5,7 +5,6 @@ import 'package:sajilo/screens/welcome/welcome.dart';
 //import 'navpages/navscreens/navhandling.dart';
 import 'screens/welcome/welcome.dart';
 import 'services/auth.dart';
-import 'services/authenticationprovider.dart';
 // import 'package:sajilo/theme.dart';'
 
 void main() async {
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthService(),
         ),
         StreamProvider(
-            create: (contex) => contex.read()<AuthenticationProvider>().authState)
+            create: (contex) => contex.read<AuthService>().authStateChanges)
       ],
       child: MaterialApp(
         title: 'Sajilo',
@@ -34,13 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// Future<void> authenticate() async{
-//   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-//   String email = sharedPreferences.getString('email');
-//   if (email!=null) {
-//     return NavHome();
-//   } else {
-//     return WelcomeScreen();
-//   }
-// }

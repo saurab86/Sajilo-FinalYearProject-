@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 //import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/widgets/custom_password_feild.dart';
 import 'package:sajilo/widgets/spinkit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:sajilo/widgets/spinkit.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
 import '../../widgets/question_row.dart';
 //import '../home/home.dart';
@@ -12,7 +13,7 @@ import '../signup/signup.dart';
 // import '../../widgets/custom_text_field.dart';
 import '../../widgets/sign_button.dart';
 
-TextEditingController _emailController;
+TextEditingController _emailController =TextEditingController();
 
 class Login extends StatelessWidget {
   @override
@@ -66,8 +67,11 @@ class Login extends StatelessWidget {
               const SizedBox(height: 25),
               SignButton(
                 text: 'Log in',
-                onPressed: () {
-                  addStringToSF();
+                onPressed: () { 
+                  
+               
+                  
+                //  addStringToSF();
                   data.signInWithEmailAndPassword().whenComplete(() {
                     if (data.userLoggedIn) {
                       Navigator.pushReplacement(context,
@@ -93,7 +97,9 @@ class Login extends StatelessWidget {
                               ));
                     }
                   });
-                },
+                   
+                   },
+               
               ),
               const SizedBox(height: 35),
               QuestionRow(
@@ -109,8 +115,8 @@ class Login extends StatelessWidget {
   }
 }
 
-addStringToSF() async{
-final SharedPreferences sharedPreferences =
-                      await SharedPreferences.getInstance();
-                   sharedPreferences.setString('email', _emailController.text);
-}
+// addStringToSF() async{
+// final SharedPreferences sharedPreferences =
+//                       await SharedPreferences.getInstance();
+//                    sharedPreferences.setString('email', _emailController.text);
+// }

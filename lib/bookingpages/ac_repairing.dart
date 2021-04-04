@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
-
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 class AcRepairService extends StatefulWidget {
   @override
   _AcRepairServiceState createState() => _AcRepairServiceState();
@@ -88,7 +88,9 @@ class _AcRepairServiceState extends State<AcRepairService> {
                       labelText: 'Full Name',
                       labelStyle: TextStyle(color: Colors.white),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                        
                       border: OutlineInputBorder(borderSide: BorderSide()),
                     ),
                   ),
@@ -138,7 +140,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
                     controller: _mobilenumberController,
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                      prefix: Icon(Icons.phone_iphone),
+                     prefixIcon:Icon(LineAwesomeIcons.mobile_phone) ,
                       hintText: 'Example: 98********',
                       labelText: 'Enter Mobile Number',
                       labelStyle: TextStyle(color: Colors.white),

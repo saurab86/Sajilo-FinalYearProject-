@@ -5,6 +5,7 @@ import 'package:sajilo/navpages/navscreens/booking.dart';
 import 'package:sajilo/navpages/navscreens/info.dart';
 import 'package:sajilo/navpages/navscreens/mainhome.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class NavHome extends StatefulWidget {
   @override
@@ -50,7 +51,7 @@ class _NavHomeState extends State<NavHome> {
           title: Text(
             "Sajilo",
             textAlign: TextAlign.center,
-            style: TextStyle(fontFamily: 'Rubik', fontWeight: FontWeight.w500),
+            style: TextStyle(fontFamily: 'SFProText', fontWeight: FontWeight.w500),
           ),
           automaticallyImplyLeading: false,
           centerTitle: true,
@@ -69,7 +70,7 @@ class _NavHomeState extends State<NavHome> {
           },
           items: [
             Icon(
-              Icons.home,
+              LineAwesomeIcons.home,
               size: 30,
             ),
             Icon(Icons.book, size: 30),

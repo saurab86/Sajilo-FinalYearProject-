@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:sajilo/navpages/navscreens/userprofile.dart';
+import 'package:sajilo/navpages/navscreens/userprofile1.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:async';
 
@@ -149,7 +149,7 @@ class _ContactPageState extends State<Info> {
               height: 10.0,
             ),
             ElevatedButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>UserProfile()));
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>UserProfile1()));
             },child: Text('Profile'),)
           ],
         ),

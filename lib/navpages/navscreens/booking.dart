@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Booking extends StatefulWidget {
   @override
@@ -323,6 +324,14 @@ class _BookingState extends State<Booking> {
                           .child(bookinginfo['key'])
                           .remove()
                           .whenComplete(() => Navigator.pop(context));
+                          Fluttertoast.showToast(
+                              msg: "Request Cancelled",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 4,
+                              backgroundColor: Colors.teal,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                     },
                     child: Text(
                       'Yes',

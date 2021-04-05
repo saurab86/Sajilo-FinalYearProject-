@@ -29,8 +29,8 @@ class _ContactPageState extends State<Info> {
 
   final Uri _emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'sajilohelp2gmail.com',
-      queryParameters: {'subject': 'SUBJECT'});
+      path: 'helpsajilo@gmail.com',
+      queryParameters: {'subject': 'Help for :'});
 
   Widget _launchStatus(BuildContext context, AsyncSnapshot<void> snapshot) {
     if (snapshot.hasError) {
@@ -135,7 +135,7 @@ class _ContactPageState extends State<Info> {
                       Padding(
                           padding: EdgeInsets.only(left: 10.0),
                           child: new Text(
-                            "Email:helpsajilo@gamil.com",
+                            "Email:helpsajilo@gmail.com",
                             style:
                                 TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
                           ))

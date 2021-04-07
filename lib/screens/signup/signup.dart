@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:provider/provider.dart';
-import 'package:sajilo/widgets/customAddressFeild.dart';
 import 'package:sajilo/widgets/customMobileFeild.dart';
 import 'package:sajilo/widgets/custom_password_feild.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -40,12 +39,6 @@ class SignUp extends StatelessWidget {
               ),
              SizedBox(height: 12,),
           
-          //address textfeild
-          CustomAddressTextField(
-            keyboardType: TextInputType.streetAddress,
-            hintText: 'Enter your address',
-          ),
-          SizedBox(height:12),
 
 
         //

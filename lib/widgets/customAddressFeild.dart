@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
-class CustomTextField extends StatelessWidget {
-  CustomTextField({this.keyboardType, this.hintText, this.onChanged});
+class CustomAddressTextField extends StatelessWidget {
+  CustomAddressTextField({this.keyboardType, this.hintText, this.onChanged});
   final TextInputType keyboardType;
   final String hintText;
   final Function onChanged;
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController;
+    TextEditingController addressController;
     ScreenScaler scaler = ScreenScaler()..init(context);
 
     return Material(
@@ -17,11 +18,11 @@ class CustomTextField extends StatelessWidget {
       shape: const StadiumBorder(),
       shadowColor: Color(0xFFFB6158).withOpacity(0.2),
       child: TextFormField(
-        controller: emailController,
+        controller: addressController,
         keyboardType: keyboardType,
-        style: TextStyle(fontSize: scaler.getTextSize(12),fontFamily: 'SFProText'),
+        style: TextStyle(fontSize: scaler.getTextSize(12),fontFamily:'SFProText'),
         decoration:
-            InputDecoration(hintText: hintText, icon: Icon(Icons.email)),
+            InputDecoration(hintText: hintText, icon: Icon(LineAwesomeIcons.address_card_1)),
         onChanged: onChanged,
       ),
     );

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:provider/provider.dart';
+import 'package:sajilo/widgets/customAddressFeild.dart';
+import 'package:sajilo/widgets/customMobileFeild.dart';
 import 'package:sajilo/widgets/custom_password_feild.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sajilo/widgets/customnametextfeild.dart';
+import 'package:sajilo/widgets/customwardfeild.dart';
 import '../../services/auth.dart';
 import '../../widgets/question_row.dart';
 import '../login/login.dart';
@@ -26,14 +30,49 @@ class SignUp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset('assets/images/applogo.png',
-                  height: scale.getHeight(20)),
-              SizedBox(height: scale.getHeight(3)),
+                  height: scale.getHeight(18)),
+             SizedBox(height: 12,),
+
+               //Full Name Textfeild
+              CustomNameTextField(
+                keyboardType: TextInputType.text,
+                hintText: 'Enter Full Name',
+              ),
+             SizedBox(height: 12,),
+          
+          //address textfeild
+          CustomAddressTextField(
+            keyboardType: TextInputType.streetAddress,
+            hintText: 'Enter your address',
+          ),
+          SizedBox(height:12),
+
+
+        //
+           CustomWardTextField(
+             keyboardType: TextInputType.number,
+             hintText: 'Enter your ward number',
+           ),
+         SizedBox(height: 12.0,),
+       
+       
+        //mobile number textfeild
+    CustomMobileTextField(
+      keyboardType: TextInputType.phone,
+      hintText: 'Enter your mobile number',
+    ),
+    SizedBox(height: 12,),
+
+       
+          //Email Textfeild
               CustomTextField(
                 keyboardType: TextInputType.emailAddress,
                 hintText: 'Your Email',
                 onChanged: (value) => data.email = value,
               ),
               const SizedBox(height: 15),
+
+          //Password Textfeild
               CustomTextField1(
                 hintText: 'Password',
                 onChanged: (value) => data.password = value,

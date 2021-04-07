@@ -27,7 +27,7 @@ class _CustomTextField1State extends State<CustomTextField1> {
         obscureText: _obscureText,
         controller: passwordController,
         keyboardType: widget.keyboardType,
-        style: TextStyle(fontSize: scaler.getTextSize(12)),
+        style: TextStyle(fontSize: scaler.getTextSize(12),fontFamily: 'SFProText'),
         decoration: InputDecoration(
             hintText: widget.hintText,
             icon: Icon(Icons.vpn_key),

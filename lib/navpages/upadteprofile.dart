@@ -2,10 +2,16 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/userprofile1.dart';
+import 'package:sajilo/services/auth.dart';
 
+// ignore: must_be_immutable
 class UpdateProfile extends StatefulWidget {
+  String profileKey;
+  UpdateProfile({this.profileKey});
   @override
+  
   _UpdateProfileState createState() => _UpdateProfileState();
 }
 
@@ -40,6 +46,7 @@ void initState(){
   }
 
   Widget build(BuildContext context) {
+    AuthService data = Provider.of<AuthService>(context);
     return Scaffold(
       appBar: AppBar(automaticallyImplyLeading: true,),
       body: Center(
@@ -168,7 +175,7 @@ void initState(){
                   style: ElevatedButton.styleFrom(primary: Colors.teal),
                   onPressed: () {
                     if (_formkey.currentState.validate()) {
-                      return saveProfile();
+                      return saveProfile(data.userID);
                     }
                     else print('Unsucessfull');
                   },
@@ -185,21 +192,26 @@ void initState(){
     );
   }
 
-  saveProfile(){
+  saveProfile(String x)  {
   String name = _nameController.text;
   String address = _addressController.text;
   String ward = _wardController.text;
   String mobilenumber = _mobileNumberController.text;
+  String userID= x;
 
 
+  
     Map<String,String> userprofile = {
       'Name': name,
       'Address': address,
       'Ward': ward,
       'MobileNumber':mobilenumber,
+      'UserID': userID,
 
     };
-     _ref.push().set(userprofile);
+    // _ref.push().set(userprofile);
+     //_ref.child("UserProfile").update({'Name':name,'Address':address,'Ward':ward,'MobileNumber':mobilenumber,'UserID':userID});
+     _ref.child(widget.profileKey).update(userprofile).then((value) => Navigator.push(context, MaterialPageRoute(builder: (_)=>UserProfile1())));
 
       showDialog(
         barrierDismissible: false,
@@ -234,7 +246,7 @@ void initState(){
                               MaterialPageRoute(builder: (_) =>UserProfile1())));
                     },
                     child: Text(
-                      'OK',
+                      'Ok',
                       style: TextStyle(fontSize: 16.0),
                     ))
               ],

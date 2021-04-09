@@ -8,6 +8,7 @@ import 'package:sajilo/bookingpages/haircut.dart';
 import 'package:sajilo/bookingpages/house_painting.dart';
 import 'package:sajilo/bookingpages/laptop_repair.dart';
 import 'package:sajilo/bookingpages/plumbing_service.dart';
+import 'package:sajilo/bookingpages/testtab.dart';
 import 'package:sajilo/bookingpages/tv_repair.dart';
 
 var services = [
@@ -21,6 +22,7 @@ var services = [
   "Haircut Service",
   "Furniture ",
   "Plumbing Service",
+  "test"
 ];
 var img = [
   "assets/serviceimage/painting.png",
@@ -32,6 +34,7 @@ var img = [
   "assets/serviceimage/bike.png",
   "assets/serviceimage/haircut.png",
   "assets/serviceimage/furniture.png",
+  "assets/serviceimage/plumbing.png",
   "assets/serviceimage/plumbing.png",
 ];
 
@@ -45,7 +48,8 @@ var bookingsroutes = [
   "BikeBooking()",
   "HairCutBooking()",
   "FurnitureBooking()",
-  "HaircutBooking()"
+  "HaircutBooking()",
+  "TestClass()"
 ];
 
 class MainHome extends StatefulWidget {
@@ -58,7 +62,7 @@ class _MainHomeState extends State<MainHome> {
   Widget build(BuildContext context) {
     return GridView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: 10,
+        itemCount: 11,
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
@@ -115,11 +119,19 @@ class _MainHomeState extends State<MainHome> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => FurnitureBooking()));
-                } else {
+
+
+
+
+                } else if (index == 9){
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => PlumbingService()));
+                }
+                else if (index ==10){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>TestClass()));
+
                 }
               },
               child: Column(

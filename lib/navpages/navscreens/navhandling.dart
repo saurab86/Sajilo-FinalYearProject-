@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:sajilo/navpages/navscreens/account.dart';
 import 'package:sajilo/navpages/navscreens/booking.dart';
 import 'package:sajilo/navpages/navscreens/info.dart';
 import 'package:sajilo/navpages/navscreens/mainhome.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:sajilo/navpages/navscreens/userprofile1.dart';
 
 class NavHome extends StatefulWidget {
   @override
@@ -14,7 +14,7 @@ class NavHome extends StatefulWidget {
 
 class _NavHomeState extends State<NavHome> {
   var _page = 0;
-  final pages = [MainHome(), Booking(), Info(), Account(),];
+  final pages = [MainHome(), Booking(), Info(), UserProfile1(),];
 
   Future<bool> _onBackPressed() {
     return showDialog(
@@ -77,7 +77,7 @@ class _NavHomeState extends State<NavHome> {
             Icon(Icons.info_outline, size: 30),
             Icon(Icons.perm_identity, size: 30),
           ],
-          height: 52.0,
+          height: 53.0,
           animationDuration: Duration(milliseconds: 500),
         ),
         body: pages[_page],

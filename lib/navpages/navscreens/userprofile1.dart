@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/upadteprofile.dart';
+import 'package:sajilo/screens/userinfo/components/logout_button.dart';
 import 'package:sajilo/services/auth.dart';
+import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 class UserProfile1 extends StatefulWidget {
   @override
@@ -29,6 +31,7 @@ class _UserProfile1State extends State<UserProfile1> {
   
   Widget _buildUserProfile({Map userprofile}) {
     AuthService data = Provider.of<AuthService>(context);
+    ScreenScaler scale = ScreenScaler();
        return SafeArea(
         child: Container(
       alignment: Alignment.center,
@@ -152,14 +155,15 @@ class _UserProfile1State extends State<UserProfile1> {
             SizedBox(
               width: 4,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'Signout',
-                style: TextStyle(fontFamily: 'SFProText', fontSize: 18),
-              ),
-              style: ElevatedButton.styleFrom(primary: Colors.redAccent),
-            ),
+            // ElevatedButton(
+            //   onPressed: () {},
+            //   child: Text(
+            //     'Signout',
+            //     style: TextStyle(fontFamily: 'SFProText', fontSize: 18),
+            //   ),
+            //   style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+            // ),
+             LogoutButton(data: data, scale: scale),
           ])
         ],
       ),

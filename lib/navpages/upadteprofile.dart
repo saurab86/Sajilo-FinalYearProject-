@@ -209,7 +209,7 @@ void initState(){
       'UserID': userID,
 
     };
-    // _ref.push().set(userprofile);
+    
      //_ref.child("UserProfile").update({'Name':name,'Address':address,'Ward':ward,'MobileNumber':mobilenumber,'UserID':userID});
      _ref.child(widget.profileKey).update(userprofile).then((value) => Navigator.push(context, MaterialPageRoute(builder: (_)=>UserProfile1())));
 

@@ -20,8 +20,7 @@ class _Signup1State extends State<Signup1> {
   TextEditingController _nameController,
       _addressController,
       _wardController,
-      _mobileNumberController,
-      _emailController;
+      _mobileNumberController;
   DatabaseReference _ref;
   @override
   void initState() {
@@ -30,7 +29,7 @@ class _Signup1State extends State<Signup1> {
     _addressController = TextEditingController();
     _wardController = TextEditingController();
     _mobileNumberController = TextEditingController();
-    _emailController = TextEditingController();
+   // _emailController = TextEditingController();
     // _passwordController = TextEditingController();
     _ref = FirebaseDatabase.instance.reference().child('UserProfile');
   }
@@ -165,7 +164,7 @@ class _Signup1State extends State<Signup1> {
                       'userID': data.userID,
                       'password': data.password,
                     });
-                    saveUserProfile();
+                    saveUserProfile(data.userID);
                   }).whenComplete(() {
                     if (data.userLoggedIn) {
                       showDialog(
@@ -232,20 +231,22 @@ class _Signup1State extends State<Signup1> {
     );
   }
 
-  void saveUserProfile() {
+  void saveUserProfile(userid) {
     String name = _nameController.text;
     String address = _addressController.text;
     String ward = _wardController.text;
     String mobilenumber = _mobileNumberController.text;
-    String email = _emailController.text;
+  //  String email = _emailController.text;
+    String id = userid;
     // String password = passwordController.text;
 
     Map<String, String> userprofile = {
       'Name': name,
       'Address': address,
-      'WardNo': ward,
+      'Ward': ward,
       'MobileNumber': mobilenumber,
-      'Email': email,
+      //'Email': email,
+      'UserID':id,
     };
     _ref.push().set(userprofile);
   }

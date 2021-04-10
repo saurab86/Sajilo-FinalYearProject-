@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/navpages/navscreens/userprofile1.dart';
 import 'package:sajilo/services/auth.dart';
 
@@ -46,9 +47,12 @@ void initState(){
   }
 
   Widget build(BuildContext context) {
+    const curveHeight = 50.0;
     AuthService data = Provider.of<AuthService>(context);
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: true,),
+      appBar: AppBar(automaticallyImplyLeading: true,title: Text("Update Profile",style: TextStyle(fontFamily: 'Rubik',fontSize: 20.0),),
+      centerTitle:true,
+      shape:const MyShapeBorder(curveHeight) ,),
       body: Center(
         child: Form(
            key: _formkey,
@@ -192,6 +196,8 @@ void initState(){
     );
   }
 
+  
+
   saveProfile(String x)  {
   String name = _nameController.text;
   String address = _addressController.text;
@@ -211,7 +217,7 @@ void initState(){
     };
     
      //_ref.child("UserProfile").update({'Name':name,'Address':address,'Ward':ward,'MobileNumber':mobilenumber,'UserID':userID});
-     _ref.child(widget.profileKey).update(userprofile).then((value) => Navigator.push(context, MaterialPageRoute(builder: (_)=>UserProfile1())));
+     _ref.child(widget.profileKey).update(userprofile).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavHome())));
 
       showDialog(
         barrierDismissible: false,
@@ -252,4 +258,21 @@ void initState(){
               ],
             ));
   }
+}
+
+class MyShapeBorder extends ContinuousRectangleBorder {
+  const MyShapeBorder(this.curveHeight);
+  final double curveHeight;
+
+  @override
+  Path getOuterPath(Rect rect, {TextDirection textDirection}) => Path()
+    ..lineTo(0, rect.size.height)
+    ..quadraticBezierTo(
+      rect.size.width / 2,
+      rect.size.height + curveHeight * 2,
+      rect.size.width,
+      rect.size.height,
+    )
+    ..lineTo(rect.size.width, 0)
+    ..close();
 }

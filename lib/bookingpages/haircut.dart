@@ -38,6 +38,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
 
   Widget build(BuildContext context) {
     AuthService data = Provider.of<AuthService>(context);
+    DateTime now  = DateTime.now();
     return Scaffold(
         backgroundColor: Colors.teal,
         body: CustomScrollView(
@@ -206,7 +207,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
                                     ],
                                   ));
                         } else {
-                          saveBooking(data.userInfo, data.userID);
+                          saveBooking(data.userInfo, data.userID,now);
                         }
                       },
                       child: Text(
@@ -221,7 +222,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
         ));
   }
 
-  void saveBooking(String a, String userID) {
+  void saveBooking(String a, String userID,now) {
     String name = _nameController.text;
     String address = _addressController.text;
     String ward = _wardController.text;
@@ -229,6 +230,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
     String service = "Haircut and Salon Service";
     String emailid = a;
     String bookingstatus = 'Pending';
+    String y = now.toString();
     Map<String, String> bookinginfo = {
       'name': name,
       'address': address,
@@ -238,6 +240,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
       "email": emailid,
       'UserID': userID,
       'BookingStatus': bookingstatus,
+      'BookedTimeAndDate':y,
     };
     _ref.push().set(bookinginfo);
     showDialog(

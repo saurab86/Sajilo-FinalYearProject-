@@ -4,6 +4,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Booking extends StatefulWidget {
   @override
@@ -39,7 +40,7 @@ class _BookingState extends State<Booking> {
           color: Colors.lightBlue[100],
           margin: EdgeInsets.symmetric(vertical: 8.0),
           padding: EdgeInsets.all(8.0),
-          height: 160.0,
+          height: 180.0,
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -148,6 +149,16 @@ class _BookingState extends State<Booking> {
                     )
                   ],
                 )),
+
+                SizedBox(height:12),
+                Row(
+                  children: [
+                    Icon(LineAwesomeIcons.calendar,size: 20,),
+                    Text('Booked Date & time:',style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),),
+                    SizedBox(width:5),
+                    Text(bookinginfo['BookedTimeAndDate'],style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),)
+                  ],
+                ),
                 SafeArea(
                     child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -180,7 +191,7 @@ class _BookingState extends State<Booking> {
           color: Colors.lightBlue[100],
           margin: EdgeInsets.symmetric(vertical: 8.0),
           padding: EdgeInsets.all(8.0),
-          height: 160.0,
+          height: 180.0,
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -255,6 +266,18 @@ class _BookingState extends State<Booking> {
                 SizedBox(
                   height: 10.0,
                 ),
+
+                Row(
+                  children: [
+                    Icon(LineAwesomeIcons.calendar,size: 20,),
+                    Text('Booked Date & time:',style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),),
+                    SizedBox(width:5),
+                    Text(bookinginfo['BookedTimeAndDate'],style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),)
+                  ],
+                ),
+
+
+                SizedBox(height:12),
                 SafeArea(
                     child: Row(
                   children: [

@@ -32,6 +32,8 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
 
   Widget build(BuildContext context) {
     AuthService data = Provider.of<AuthService>(context);
+    DateTime now = DateTime.now();
+    Text('Time and Date: $now');
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
@@ -191,7 +193,7 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
                                   ],
                                 ));
                       } else {
-                        saveBooking(data.userInfo, data.userID);
+                        saveBooking(data.userInfo, data.userID,now);
                       }
                     },
                     child: Text(
@@ -207,7 +209,7 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
     );
   }
 
-  void saveBooking(String a, String userID) {
+  void saveBooking(String a, String userID,now) {
     String name = _nameController.text;
     String address = _addressController.text;
     String ward = _wardController.text;
@@ -215,6 +217,7 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
     String service = "Bike reparing & Servicing";
     String emailid = a;
     String bookingstatus = 'Pending';
+     String y = now.toString();
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -225,6 +228,7 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
       'email': emailid,
       'UserID': userID,
       'BookingStatus': bookingstatus,
+      'BookedTimeAndDate':y,
     };
     _ref.push().set(bookinginfo);
 

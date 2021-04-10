@@ -29,6 +29,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
 
   Widget build(BuildContext context) {
     AuthService data = Provider.of<AuthService>(context);
+    DateTime now = DateTime.now();
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
@@ -185,7 +186,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                                   ],
                                 ));
                       } else {
-                        saveBooking(data.userInfo, data.userID);
+                        saveBooking(data.userInfo, data.userID,now);
                       }
                     },
                     child: Text(
@@ -201,7 +202,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     );
   }
 
-  void saveBooking(String a, String userID) {
+  void saveBooking(String a, String userID,now) {
     String name = _nameController.text;
     String address = _addressController.text;
     String ward = _wardController.text;
@@ -209,6 +210,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     String service = "Laptop Reparing";
     String emailid = a;
     String bookingstatus = 'Pending';
+    String y = now.toString();
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -219,6 +221,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
       'email': emailid,
       'UserID': userID,
       'BookingStatus': bookingstatus,
+      'BookedTimeAndDate': y,
     };
     _ref.push().set(bookinginfo);
     showDialog(

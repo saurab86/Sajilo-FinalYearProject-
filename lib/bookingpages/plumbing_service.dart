@@ -39,6 +39,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
 
   Widget build(BuildContext context) {
     AuthService data = Provider.of<AuthService>(context);
+    DateTime now = DateTime.now();
     return Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
@@ -206,7 +207,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
                                   ],
                                 ));
                       } else {
-                        saveBooking(data.userInfo, data.userID);
+                        saveBooking(data.userInfo, data.userID,now);
                       }
                     },
                     child: Text(
@@ -222,7 +223,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
     );
   }
 
-  void saveBooking(String a, String userID) {
+  void saveBooking(String a, String userID,now) {
     String name = _nameController.text;
     String address = _addressController.text;
     String ward = _wardController.text;
@@ -230,6 +231,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
     String service = "Plumbing Service";
     String emailid = a;
     String bookingstatus = 'Pending';
+    String y = now.toString();
     Map<String, String> bookinginfo = {
       'name': name,
       'address': address,
@@ -239,6 +241,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
       "email": emailid,
       'UserID': userID,
       'BookingStatus': bookingstatus,
+      'BookedTimeAndDate':y,
     };
     _ref.push().set(bookinginfo);
     showDialog(

@@ -8,6 +8,8 @@ import 'package:sajilo/navpages/upadteprofile.dart';
 import 'package:sajilo/screens/userinfo/components/logout_button.dart';
 import 'package:sajilo/services/auth.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+// ignore: unused_import
+import 'package:shimmer/shimmer.dart';
 
 class UserProfile1 extends StatefulWidget {
   @override
@@ -155,16 +157,20 @@ class _UserProfile1State extends State<UserProfile1> {
             SizedBox(
               width: 4,
             ),
-            // ElevatedButton(
-            //   onPressed: () {},
-            //   child: Text(
-            //     'Signout',
-            //     style: TextStyle(fontFamily: 'SFProText', fontSize: 18),
-            //   ),
-            //   style: ElevatedButton.styleFrom(primary: Colors.redAccent),
-            // ),
              LogoutButton(data: data, scale: scale),
-          ])
+
+             
+          ]),
+          // SizedBox(height: 10),
+          // ElevatedButton(onPressed: (){
+          //   Navigator.push(context,
+          //    PageRouteBuilder(transitionDuration: Duration(seconds: 2),
+          //    transitionsBuilder: (BuildContext context,
+          //   Animation<double>animation,Animation<double> secAnimation,Widget child){animation =
+          //    CurvedAnimation(parent: animation,curve: Curves.elasticInOut);
+          //   return ScaleTransition(scale: animation,alignment: Alignment.center,child:child);},pageBuilder: (BuildContext context, Animation<double>animation,
+          //   Animation<double> secAnimation){return TestClass();}));
+          // }, child: Text('Test')),
         ],
       ),
     ));   
@@ -182,7 +188,23 @@ class _UserProfile1State extends State<UserProfile1> {
               Animation<double> animation, int index) {
             Map userprofile = snapshot.value;
             userprofile['key']=snapshot.key;
+            if(userprofile!=null){
             return _buildUserProfile(userprofile: userprofile);
+            }
+            else{
+              return Shimmer.fromColors(child:ListView.builder(itemCount: 4,itemBuilder: (context, index){
+                return ListTile(
+                  leading: Icon(Icons.image,size:50.0),
+                  title: SizedBox(
+                    child: Container(
+                      color: Colors.green
+                    ),height: 20,
+                  ),
+                  
+                );
+              },), baseColor: Colors.grey, highlightColor: Colors.teal,
+              period: Duration(seconds: 3),);
+            }
           },
         )
       ),

@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:sajilo/screens/login/login.dart';
 import 'package:sajilo/services/auth.dart';
 import 'package:sajilo/widgets/custom_password_feild.dart';
+import 'package:sajilo/widgets/custom_text_field.dart';
 import 'package:sajilo/widgets/question_row.dart';
 import 'package:sajilo/widgets/sign_button.dart';
 
@@ -122,17 +123,22 @@ class _Signup1State extends State<Signup1> {
               ),
 
               //Email Textfeild
-              TextFormField( 
-                controller: _emailController,
-                decoration: InputDecoration(
-                  hintText: 'Enter your email',
-                  prefixIcon: Icon(Icons.mail_outline_rounded),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
-                      borderRadius: BorderRadius.all(Radius.circular(40))),
-                         ),
+              // TextFormField( 
+              //   controller: _emailController,
+              //   decoration: InputDecoration(
+              //     hintText: 'Enter your email',
+              //     prefixIcon: Icon(Icons.mail_outline_rounded),
+              //     focusedBorder: OutlineInputBorder(
+              //         borderSide: BorderSide(color: Colors.green),
+              //         borderRadius: BorderRadius.all(Radius.circular(40))),
+              //            ),
+              //   keyboardType: TextInputType.emailAddress,
+              //     style: TextStyle(fontFamily: 'SFProText',fontSize: 18)
+              // ),
+              CustomTextField(
                 keyboardType: TextInputType.emailAddress,
-                  style: TextStyle(fontFamily: 'SFProText',fontSize: 18)
+                hintText: 'Your Email',
+                onChanged: (value) => data.email = value,
               ),
               const SizedBox(height: 15),
 
@@ -151,13 +157,15 @@ class _Signup1State extends State<Signup1> {
               SignButton(
                 text: 'Sign up',
                 onPressed: () {
-                  saveUserProfile();
+                  
+                  //saveUserProfile();
                   data.createAccountWithEmailAndPassword().then((signedInUser) {
                     _firestore.collection('Users').add({
                       'email': data.email,
                       'userID': data.userID,
                       'password': data.password,
                     });
+                    saveUserProfile();
                   }).whenComplete(() {
                     if (data.userLoggedIn) {
                       showDialog(

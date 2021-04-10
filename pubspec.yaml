@@ -36,6 +36,7 @@ dependencies:
   line_awesome_flutter: ^1.0.1
   animated_theme_switcher: ^1.0.9
   flutter_screenutil: ^1.0.2
+  shimmer: ^1.1.2
 
 dev_dependencies:
   flutter_test:

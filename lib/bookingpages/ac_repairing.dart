@@ -38,6 +38,8 @@ class _AcRepairServiceState extends State<AcRepairService> {
 
   Widget build(BuildContext context) {
     AuthService data = Provider.of<AuthService>(context);
+    DateTime now = new DateTime.now();
+    Text('Time and Date: $now');
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
@@ -206,7 +208,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
                                   ],
                                 ));
                       } else {
-                        saveBooking(data.userInfo, data.userID);
+                        saveBooking(data.userInfo, data.userID,now);
                       }
                     },
                     child: Text(
@@ -222,7 +224,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
     );
   }
 
-  void saveBooking(String a, String userID) {
+  void saveBooking(String a, String userID, now) {
     String name = _nameController.text;
     String address = _addressController.text;
     String ward = _wardController.text;
@@ -230,6 +232,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
     String service = "Ac Reparing";
     String emailid = a;
     String x;
+    String y = now.toString();
     if (bookingstatus == true) {
       x = "Pending";
     } else {
@@ -245,6 +248,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
       'email': emailid,
       'UserID': userID,
       'BookingStatus': x,
+      'BookedTimeAndDate':y,
     };
     _ref.push().set(bookinginfo);
 

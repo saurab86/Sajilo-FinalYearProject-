@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
+import 'package:sajilo/screens/welcome/welcome1.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../screens/welcome/welcome.dart';
+//import '../../../screens/welcome/welcome.dart';
 import '../../../services/auth.dart';
 import '../../../constants.dart';
 
@@ -29,7 +30,7 @@ class LogoutButton extends StatelessWidget {
           _signOut();
           data.signOut().whenComplete(() {
             Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (_) => new WelcomeScreen()));
+                MaterialPageRoute(builder: (_) => new Welcome()));
           });
         },
       ),

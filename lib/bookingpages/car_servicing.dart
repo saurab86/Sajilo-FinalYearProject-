@@ -1,6 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
@@ -243,16 +243,15 @@ class _CarBookingState extends State<CarBooking> {
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                      Fluttertoast.showToast(
-                              msg: "Booked Successfully",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 4,
-                              backgroundColor: Colors.teal,
-                              textColor: Colors.white,
-                              fontSize: 16.0)
-                          .then((value) => Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) => NavHome())));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavHome()));
+                     Flushbar(
+                       icon: Icon(Icons.done_all_sharp,size: 32.0,color: Colors.blue,),
+                       title: 'Successfully Booked',
+                       message: 'Bike reparing services',
+                       flushbarPosition: FlushbarPosition.TOP,
+                       duration: Duration(seconds: 2),
+                       flushbarStyle: FlushbarStyle.FLOATING,
+                     ).show(context);
                     },
                     child: Text(
                       'OK',

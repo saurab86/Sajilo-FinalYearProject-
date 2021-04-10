@@ -20,8 +20,8 @@ class _CustomTextField1State extends State<CustomTextField1> {
     ScreenScaler scaler = ScreenScaler()..init(context);
 
     return Material(
-      elevation: 8,
-      shape: const StadiumBorder(),
+    //  elevation: 8,
+      //shape: const StadiumBorder(),
       shadowColor: Color(0xFFFB6158).withOpacity(0.2),
       child: TextFormField(
         obscureText: _obscureText,

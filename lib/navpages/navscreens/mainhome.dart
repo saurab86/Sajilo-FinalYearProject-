@@ -8,6 +8,7 @@ import 'package:sajilo/bookingpages/haircut.dart';
 import 'package:sajilo/bookingpages/house_painting.dart';
 import 'package:sajilo/bookingpages/laptop_repair.dart';
 import 'package:sajilo/bookingpages/plumbing_service.dart';
+// ignore: unused_import
 import 'package:sajilo/bookingpages/testtab.dart';
 import 'package:sajilo/bookingpages/tv_repair.dart';
 
@@ -22,7 +23,7 @@ var services = [
   "Haircut Service",
   "Furniture ",
   "Plumbing Service",
-  "test"
+ // "test"
 ];
 var img = [
   "assets/serviceimage/painting.png",
@@ -35,7 +36,7 @@ var img = [
   "assets/serviceimage/haircut.png",
   "assets/serviceimage/furniture.png",
   "assets/serviceimage/plumbing.png",
-  "assets/serviceimage/plumbing.png",
+ // "assets/serviceimage/plumbing.png",
 ];
 
 var bookingsroutes = [
@@ -49,7 +50,7 @@ var bookingsroutes = [
   "HairCutBooking()",
   "FurnitureBooking()",
   "HaircutBooking()",
-  "TestClass()"
+ // "TestClass()"
 ];
 
 class MainHome extends StatefulWidget {
@@ -62,7 +63,7 @@ class _MainHomeState extends State<MainHome> {
   Widget build(BuildContext context) {
     return GridView.builder(
         physics: BouncingScrollPhysics(),
-        itemCount: 11,
+        itemCount: 10,
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
@@ -129,10 +130,10 @@ class _MainHomeState extends State<MainHome> {
                       MaterialPageRoute(
                           builder: (context) => PlumbingService()));
                 }
-                else if (index ==10){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>TestClass()));
+                // else if (index ==10){
+                //   Navigator.push(context, MaterialPageRoute(builder: (context)=>TestClass()));
 
-                }
+                // }
               },
               child: Column(
                 children: [

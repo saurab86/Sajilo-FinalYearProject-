@@ -73,7 +73,7 @@ class _UserProfileState extends State<UserProfile> {
                   size: ScreenUtil().setSp(kSpacingUnit.w * 3)),
               SizedBox(
                 width: kSpacingUnit.w * 3,
-              )
+              ),
             ],
           )
         ],

@@ -149,14 +149,22 @@ class _BookingState extends State<Booking> {
                     )
                   ],
                 )),
-
-                SizedBox(height:12),
+                SizedBox(height: 12),
                 Row(
                   children: [
-                    Icon(LineAwesomeIcons.calendar,size: 20,),
-                    Text('Booked Date & time:',style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),),
-                    SizedBox(width:5),
-                    Text(bookinginfo['BookedTimeAndDate'],style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),)
+                    Icon(
+                      LineAwesomeIcons.calendar,
+                      size: 20,
+                    ),
+                    Text(
+                      'Booked Date :',
+                      style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      bookinginfo['BookedTimeAndDate'],
+                      style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                    )
                   ],
                 ),
                 SafeArea(
@@ -266,18 +274,24 @@ class _BookingState extends State<Booking> {
                 SizedBox(
                   height: 10.0,
                 ),
-
                 Row(
                   children: [
-                    Icon(LineAwesomeIcons.calendar,size: 20,),
-                    Text('Booked Date & time:',style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),),
-                    SizedBox(width:5),
-                    Text(bookinginfo['BookedTimeAndDate'],style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),)
+                    Icon(
+                      LineAwesomeIcons.calendar,
+                      size: 20,
+                    ),
+                    Text(
+                      'Booked Date & time:',
+                      style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      bookinginfo['BookedTimeAndDate'],
+                      style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                    )
                   ],
                 ),
-
-
-                SizedBox(height:12),
+                SizedBox(height: 12),
                 SafeArea(
                     child: Row(
                   children: [
@@ -347,14 +361,14 @@ class _BookingState extends State<Booking> {
                           .child(bookinginfo['key'])
                           .remove()
                           .whenComplete(() => Navigator.pop(context));
-                          Fluttertoast.showToast(
-                              msg: "Request Cancelled",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 4,
-                              backgroundColor: Colors.teal,
-                              textColor: Colors.white,
-                              fontSize: 16.0);
+                      Fluttertoast.showToast(
+                          msg: "Request Cancelled",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
+                          timeInSecForIosWeb: 4,
+                          backgroundColor: Colors.teal,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
                     },
                     child: Text(
                       'Yes',

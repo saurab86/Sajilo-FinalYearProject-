@@ -260,7 +260,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                      Flushbar(
                        icon: Icon(Icons.done_all_sharp,size: 32.0,color: Colors.blue,),
                        title: 'Successfully Booked',
-                       message: 'Bike reparing services',
+                       message: 'Electricity reparing services',
                        flushbarPosition: FlushbarPosition.TOP,
                        duration: Duration(seconds: 2),
                        flushbarStyle: FlushbarStyle.FLOATING,

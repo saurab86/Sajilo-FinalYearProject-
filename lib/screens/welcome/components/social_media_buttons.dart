@@ -31,11 +31,11 @@ class ConnectWithSocialAccount extends StatelessWidget {
         //   size: 7,
         //   onPressed: () => _socialMediaSignIn(data.signInWithTwitter()),
         // ),
-        SocialMediaButton(
-          image: 'facebook',
-          size: 6,
-          onPressed: () => _socialMediaSignIn(data.signInWithFacebook()),
-        ),
+        // SocialMediaButton(
+        //   image: 'facebook',
+        //   size: 6,
+        //   onPressed: () => _socialMediaSignIn(data.signInWithFacebook()),
+        // ),
       ],
     );
   }

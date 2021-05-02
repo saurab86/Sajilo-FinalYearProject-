@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
+import 'package:sajilo/widgets/spinkit2.dart';
 //import 'package:sajilo/widgets/loading_spinkit.dart';
 //import 'package:sajilo/widgets/spinkit.dart';
 
@@ -169,7 +170,9 @@ class _HousePaintingBookingState extends State<HousePaintingBooking> {
                         color: Colors.indigo,
                         size: 30.0,
                       ),
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> Spinkit2()));
+                      }),
 
                   SizedBox(
                     height: 15.0,
@@ -273,7 +276,7 @@ class _HousePaintingBookingState extends State<HousePaintingBooking> {
                      Flushbar(
                        icon: Icon(Icons.done_all_sharp,size: 32.0,color: Colors.blue,),
                        title: 'Successfully Booked',
-                       message: 'Bike reparing services',
+                       message: 'House Painting services',
                        flushbarPosition: FlushbarPosition.TOP,
                        duration: Duration(seconds: 2),
                        flushbarStyle: FlushbarStyle.FLOATING,

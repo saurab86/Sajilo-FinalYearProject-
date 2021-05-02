@@ -16,7 +16,7 @@ class SignUp extends StatelessWidget {
     ScreenScaler scale = ScreenScaler()..init(context);
     AuthService data = Provider.of<AuthService>(context);
     // ignore: deprecated_member_use
-    final _firestore = Firestore.instance;
+    final _firestore = FirebaseFirestore.instance;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(

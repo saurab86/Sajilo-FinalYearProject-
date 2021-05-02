@@ -38,7 +38,7 @@ class _Signup1State extends State<Signup1> {
     ScreenScaler scale = ScreenScaler()..init(context);
     AuthService data = Provider.of<AuthService>(context);
     // ignore: deprecated_member_use
-    final _firestore = Firestore.instance;
+    final _firestore = FirebaseFirestore.instance;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
@@ -205,12 +205,14 @@ class _Signup1State extends State<Signup1> {
                                   "Error 404",
                                   textAlign: TextAlign.center,
                                 ),
-                                content: new Text(
-                                  "enter valid email format for registeration",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                  ),
+                                content: new Column(
+                               mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("Cause of error"),
+                                    Text("1. email must be valid"),
+                                    Text("2. text feild mustnot be empty"),
+                                    Text("3. accoucnt may be already registerd")
+                                  ],
                                 ),
                                 actions: <Widget>[],
                               ));

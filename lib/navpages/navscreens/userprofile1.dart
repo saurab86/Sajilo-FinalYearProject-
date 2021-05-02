@@ -148,6 +148,7 @@ class _UserProfile1State extends State<UserProfile1> {
             ),
           ),
           SizedBox(height: 12),
+        
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Icon(
               LineAwesomeIcons.alternate_sign_out,
@@ -156,6 +157,7 @@ class _UserProfile1State extends State<UserProfile1> {
             SizedBox(
               width: 4,
             ),
+            
              LogoutButton(data: data, scale: scale),
 
              

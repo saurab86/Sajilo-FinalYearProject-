@@ -1,10 +1,8 @@
-import 'dart:convert';
 
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:flutter_twitter/flutter_twitter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:http/http.dart' as http;
 // import 'dart:convert';
 
 class AuthService {
@@ -91,18 +89,18 @@ class AuthService {
 
   // Sign in with Facebook
 
-  Future signInWithFacebook() async {
-    final FacebookLoginResult result = await _fbSignIn.logIn(["email"]);
-    final String token = result.accessToken.token;
-    assert(token != null);
-    final response = await http.get(
-        'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token');
-    final profile = jsonDecode(response.body);
+  // Future signInWithFacebook() async {
+  //   final FacebookLoginResult result = await _fbSignIn.logIn(["email"]);
+  //   final String token = result.accessToken.token;
+  //   assert(token != null);
+  //   // final response = await http.get(
+  //   //     'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token');
+  //   final profile = jsonDecode(response.body);
 
-    userLoggedIn = true;
-    userInfo = profile['name'];
-    message = 'You signed in with Facebook';
-  }
+  //   userLoggedIn = true;
+  //   userInfo = profile['name'];
+  //   message = 'You signed in with Facebook';
+  // }
 
   // Sign in with Twitter
 

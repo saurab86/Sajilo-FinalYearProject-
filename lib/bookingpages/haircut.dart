@@ -268,7 +268,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
                      Flushbar(
                        icon: Icon(Icons.done_all_sharp,size: 32.0,color: Colors.blue,),
                        title: 'Successfully Booked',
-                       message: 'Bike reparing services',
+                       message: 'Hair cut services',
                        flushbarPosition: FlushbarPosition.TOP,
                        duration: Duration(seconds: 2),
                        flushbarStyle: FlushbarStyle.FLOATING,

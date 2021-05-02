@@ -267,7 +267,7 @@ class _FurnitureBookingState extends State<FurnitureBooking> {
                      Flushbar(
                        icon: Icon(Icons.done_all_sharp,size: 32.0,color: Colors.blue,),
                        title: 'Successfully Booked',
-                       message: 'Bike reparing services',
+                       message: 'Furniture reparing services',
                        flushbarPosition: FlushbarPosition.TOP,
                        duration: Duration(seconds: 2),
                        flushbarStyle: FlushbarStyle.FLOATING,

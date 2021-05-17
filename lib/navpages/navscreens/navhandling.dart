@@ -6,6 +6,7 @@ import 'package:sajilo/navpages/navscreens/mainhome.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:sajilo/navpages/navscreens/userprofile1.dart';
+import 'package:sajilo/navpages/search.dart';
 
 class NavHome extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class NavHome extends StatefulWidget {
 
 class _NavHomeState extends State<NavHome> {
   var _page = 0;
-  final pages = [MainHome(), Booking(), Info(), UserProfile1(),];
+  final pages = [MainHome(), Booking(), Info(), UserProfile1(),Search()];
 
   Future<bool> _onBackPressed() {
     return showDialog(
@@ -51,17 +52,17 @@ class _NavHomeState extends State<NavHome> {
           title: Text(
             "Sajilo",
             textAlign: TextAlign.center,
-            style: TextStyle(fontFamily: 'SFProText', fontWeight: FontWeight.w500),
+            style: TextStyle(fontFamily: 'Newsreader', fontWeight: FontWeight.w500,fontSize: 28),
           ),
           automaticallyImplyLeading: false,
           centerTitle: true,
         ),
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: Colors.indigo[50],
         bottomNavigationBar: CurvedNavigationBar(
           color: Colors.white,
           buttonBackgroundColor: Colors.white,
           backgroundColor: Colors.lightBlue,
-          animationCurve: Curves.easeInOutQuart,
+          animationCurve: Curves.ease,
           index: 0,
           onTap: (index) {
             setState(() {
@@ -76,6 +77,7 @@ class _NavHomeState extends State<NavHome> {
             Icon(Icons.book, size: 30),
             Icon(Icons.info_outline, size: 30),
             Icon(Icons.perm_identity, size: 30),
+            Icon(Icons.search,size:30)
           ],
           height: 53.0,
           animationDuration: Duration(milliseconds: 500),

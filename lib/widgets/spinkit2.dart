@@ -19,7 +19,7 @@ class _Spinkit2State extends State<Spinkit2> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => MapScreen(),
+          builder: (context) => Maps(),
         ),
       );
     });

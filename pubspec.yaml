@@ -31,16 +31,21 @@ dependencies:
   url_launcher: ^6.0.3
   http: any
   geocoder: ^0.2.1
+  geocoding: ^2.0.0
   google_maps_flutter: ^2.0.3
   geolocator: ^7.0.1
   firebase_messaging: ^9.1.1
   fluttertoast: ^8.0.3
   shared_preferences: ^2.0.5
   line_awesome_flutter: ^1.0.1
-  animated_theme_switcher: ^1.0.9
   flutter_screenutil: ^1.0.2
   shimmer: ^1.1.2
   flushbar: ^1.10.4
+  font_awesome_flutter: ^8.5.0
+  firebase_storage: ^8.0.6
+  image_picker: 
+  
+  
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +66,7 @@ flutter:
     - assets/serviceimage/electricity.png
     - assets/serviceimage/haircut.png
     - assets/serviceimage/laptop.png
+    - assets/serviceimage/carpentry.png
     - assets/serviceimage/painting.png
     - assets/serviceimage/tv.png
     - assets/serviceimage/applogo.png
@@ -77,6 +83,8 @@ flutter:
     - assets/appbarimage/barber.jpg
     - assets/appbarimage/plumber.jpg
     - assets/appbarimage/furniture.png
+    - assets/serviceimage/paintingIcon.png
+    - assets/serviceimage/laptopreparing.png
 
 
   fonts:
@@ -97,3 +105,9 @@ flutter:
           weight: 500
         - asset: assets/fonts/SF-Pro-Text-Bold.otf
           weight: 700
+
+    - family: Newsreader
+      fonts:
+        - asset: assets/fonts/Newsreader-Regular.ttf
+          weight: 600
+        

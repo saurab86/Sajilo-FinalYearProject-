@@ -281,7 +281,7 @@ class _BookingState extends State<Booking> {
                       size: 20,
                     ),
                     Text(
-                      'Booked Date & time:',
+                      'Booked date:',
                       style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
                     ),
                     SizedBox(width: 5),

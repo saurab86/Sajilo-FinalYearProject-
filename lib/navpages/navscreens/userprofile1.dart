@@ -4,6 +4,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:sajilo/navpages/navscreens/imagepicker.dart';
 import 'package:sajilo/navpages/upadteprofile.dart';
 import 'package:sajilo/screens/userinfo/components/logout_button.dart';
 import 'package:sajilo/services/auth.dart';
@@ -16,6 +17,8 @@ class UserProfile1 extends StatefulWidget {
 }
 
 class _UserProfile1State extends State<UserProfile1> {
+  
+
   Query ref;
   DatabaseReference reference =
       FirebaseDatabase.instance.reference().child('UserProfile');
@@ -45,14 +48,28 @@ class _UserProfile1State extends State<UserProfile1> {
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             CircleAvatar(
               radius: 55.0,
-              backgroundImage: AssetImage('assets/images/IMG_57451.jpg'),
+
+               child: ClipOval(
+                        child: new SizedBox(
+                          width: 180.0,
+                          height: 180.0,
+                          child:
+                          Image.network(userprofile['profilepic'],
+                          fit: BoxFit.fill,),
+               ) ),
+              //  backgroundImage:
+               
+              //  AssetImage('assets/images/IMG_57451.jpg')
+               
             ),
             //  Align(
             //    alignment: Alignment.bottomRight,
             //     child: Container(child: IconButton(icon: Icon(LineAwesomeIcons.camera), onPressed: (){}),),
             //  )
           ]),
-          IconButton(icon: Icon(LineAwesomeIcons.camera), onPressed: () {}),
+          IconButton(icon: Icon(LineAwesomeIcons.camera), onPressed: () {
+         Navigator.push(context, MaterialPageRoute(builder: (_)=>ImagePicker()));
+          }),
           SizedBox(
             height: 14.0,
           ),
@@ -180,6 +197,8 @@ class _UserProfile1State extends State<UserProfile1> {
 
   @override
   Widget build(BuildContext context) {
+
+
     // AuthService data = Provider.of<AuthService>(context);
     return Scaffold(
       appBar: null,

@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
@@ -7,6 +8,20 @@ import 'package:sajilo/services/auth.dart';
 import 'package:sajilo/widgets/spinkit2.dart';
 //import 'package:sajilo/widgets/loading_spinkit.dart';
 //import 'package:sajilo/widgets/spinkit.dart';
+
+class HousepantingAnimationPage extends CupertinoPageRoute {
+   HousepantingAnimationPage()
+      : super(builder: (BuildContext context) => new HousePaintingBooking());
+
+  // OPTIONAL IF YOU WISH TO HAVE SOME EXTRA ANIMATION WHILE ROUTING
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
+    return new FadeTransition(
+        opacity: animation, child: new HousePaintingBooking());
+  }
+}
+
 
 class HousePaintingBooking extends StatefulWidget {
   @override

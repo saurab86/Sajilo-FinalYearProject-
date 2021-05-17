@@ -1,9 +1,23 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
+
+class CarServiceAnimationPage extends CupertinoPageRoute {
+   CarServiceAnimationPage()
+      : super(builder: (BuildContext context) => new CarBooking());
+
+  // OPTIONAL IF YOU WISH TO HAVE SOME EXTRA ANIMATION WHILE ROUTING
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
+    return new FadeTransition(
+        opacity: animation, child: new CarBooking());
+  }
+}
 
 class CarBooking extends StatefulWidget {
   @override

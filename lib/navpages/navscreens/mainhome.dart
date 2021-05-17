@@ -80,57 +80,29 @@ class _MainHomeState extends State<MainHome> {
                 splashColor: Colors.green.withAlpha(30),
                 onTap: () {
                   if (index == 0) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HousePaintingBooking()));
+                    Navigator.of(context).push(HousepantingAnimationPage());
                   } else if (index == 1) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LaptopRepBooking()));
+                   Navigator.of(context).push(LaptopServiceAnimationPage());
                   } else if (index == 2) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ElectricityBooking()));
+                    Navigator.of(context).push(ElectricityAnimationPage());
                   } else if (index == 3) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => CarBooking()));
+                    Navigator.of(context).push(CarServiceAnimationPage());
                   } else if (index == 4) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TvRepairService()));
+                    Navigator.of(context).push(TvServiceAnimationPage());
                   } else if (index == 5) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AcRepairService()));
+                    Navigator.of(context).push(ACreparingAnimationPage());
                   } else if (index == 6) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => BikeReparingService()));
+                    Navigator.of(context).push(BikeserviceAnimationPage());
                   } else if (index == 7) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HaircutBooking()));
+                    Navigator.of(context).push(HairCutAnimationPage());
                   } else if (index == 8) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FurnitureBooking()));
+                    Navigator.of(context).push(FurnitureServiceAnimationPage());
 
 
 
 
                   } else if (index == 9){
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PlumbingService()));
+                    Navigator.of(context).push(PlumbingAnimationPage());
                   }
                   // else if (index ==10){
                   //   Navigator.push(context, MaterialPageRoute(builder: (context)=>TestClass()));

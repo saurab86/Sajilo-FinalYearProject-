@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sajilo/navpages/search.dart';
 
 class ShowD extends StatefulWidget {
   @override
@@ -40,12 +39,6 @@ class _ShowDState extends State<ShowD> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>Search()));
-            }, child: Text('Back')),
-            SizedBox(
-              width: 100,
-            ),
             ElevatedButton(onPressed: () {}, child: Text('Next'))
           ],
         ),

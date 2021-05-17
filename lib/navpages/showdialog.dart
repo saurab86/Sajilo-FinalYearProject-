@@ -11,6 +11,7 @@ class _ShowDState extends State<ShowD> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: true,
         centerTitle:  true,
         title: Text("Allow Location",style: TextStyle(fontSize: 20,fontFamily: 'Newsreder'),),
       ),

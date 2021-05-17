@@ -37,6 +37,7 @@ class _SearchState extends State<Search> {
                   fontFamily: 'Newsreader',
                   fontSize: 28.0,
                   fontWeight: FontWeight.w400,
+                  decoration: TextDecoration.underline
                 ),
               ),
             
@@ -331,6 +332,7 @@ class _SearchState extends State<Search> {
                   fontFamily: 'Newsreader',
                   fontSize: 28.0,
                   fontWeight: FontWeight.w400,
+                  decoration: TextDecoration.underline
                 ),),
                 Divider(
                   height:1,

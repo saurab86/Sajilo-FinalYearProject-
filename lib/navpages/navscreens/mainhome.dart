@@ -1,42 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:sajilo/bookingpages/ac_repairing.dart';
-import 'package:sajilo/bookingpages/bike_reparing.dart';
-import 'package:sajilo/bookingpages/car_servicing.dart';
-import 'package:sajilo/bookingpages/electricity_servicing.dart';
-import 'package:sajilo/bookingpages/furniture.dart';
-import 'package:sajilo/bookingpages/haircut.dart';
-// ignore: unused_import
-import 'package:sajilo/bookingpages/house_painting.dart';
-import 'package:sajilo/bookingpages/laptop_repair.dart';
-import 'package:sajilo/bookingpages/plumbing_service.dart';
-// ignore: unused_import
-import 'package:sajilo/bookingpages/testtab.dart';
-import 'package:sajilo/bookingpages/tv_repair.dart';
+import 'package:sajilo/map/mapPage.dart';
 
 var services = [
-  "House Painting",
-  "Laptop Reparing and Servicing",
   "Electricty Reparing",
-  "Car Reparing and Servicing",
-  "Tv Reparing",
+  "Plumbing Service",
+  "Laptop Reparing and Servicing",
   "Ac Reparing and Maintenence",
+  "Car Reparing and Servicing",
+  "House Painting",
+  "Tv Reparing",
   "Bike Reparing and Servicing",
   "Haircut Service",
   "Furniture ",
-  "Plumbing Service",
  // "test"
 ];
 var img = [
-  "assets/serviceimage/paintingIcon.png",
-  "assets/serviceimage/laptop.png",
   "assets/serviceimage/electricity.png",
+  "assets/serviceimage/plumbing.png",
+  "assets/serviceimage/laptopreparing.png",
+  "assets/serviceimage/ac.png",
+  "assets/serviceimage/car.png",
+  "assets/serviceimage/paintingIcon.png",
   "assets/serviceimage/car.png",
   "assets/serviceimage/tv.png",
-  "assets/serviceimage/ac.png",
   "assets/serviceimage/bike.png",
   "assets/serviceimage/haircut.png",
   "assets/serviceimage/furniture.png",
-  "assets/serviceimage/plumbing.png",
  // "assets/serviceimage/plumbing.png",
 ];
 
@@ -81,32 +70,42 @@ class _MainHomeState extends State<MainHome> {
                 splashColor: Colors.green.withAlpha(30),
                 onTap: () {
                   if (index == 0) {
-                    Navigator.of(context).push(HousepantingAnimationPage());
+                       String servicename ="Electricty Reparing";
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
+                 //   Navigator.of(context).push(HousepantingAnimationPage());
                   } else if (index == 1) {
-                   Navigator.of(context).push(LaptopServiceAnimationPage());
+                     String servicename ="Plumbing Service";
+                   Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
                   } else if (index == 2) {
-                    Navigator.of(context).push(ElectricityAnimationPage());
+                     String servicename ="Laptop Reparing and Servicing";
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
                   } else if (index == 3) {
-                    Navigator.of(context).push(CarServiceAnimationPage());
+                     String servicename ="Ac Reparing and Maintenence";
+                   Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
                   } else if (index == 4) {
-                    Navigator.of(context).push(TvServiceAnimationPage());
+                     String servicename ="Car Reparing and Servicing";
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
                   } else if (index == 5) {
-                    Navigator.of(context).push(ACreparingAnimationPage());
+                     String servicename ="House Painting";
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
                   } else if (index == 6) {
-                    Navigator.of(context).push(BikeserviceAnimationPage());
+                     String servicename ="Tv Reparing";
+                   Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
                   } else if (index == 7) {
-                    Navigator.of(context).push(HairCutAnimationPage());
+                     String servicename ="Bike Reparing and Servicing";
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
                   } else if (index == 8) {
-                    Navigator.of(context).push(FurnitureServiceAnimationPage());
-
-
+                     String servicename ="Haircut Service";
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
 
 
                   } else if (index == 9){
-                    Navigator.of(context).push(PlumbingAnimationPage());
+                     String servicename ="Furniture";
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
                   }
                   // else if (index ==10){
-                  //   Navigator.push(context, MaterialPageRoute(builder: (context)=>TestClass()));
+                  //    String servicename ="House Painting";
+                  //  Navigator.push(context, MaterialPageRoute(builder: (_)=>Maps(routekey: servicename)));
 
                   // }
                 },

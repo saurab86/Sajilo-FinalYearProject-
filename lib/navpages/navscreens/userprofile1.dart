@@ -176,8 +176,7 @@ class _UserProfile1State extends State<UserProfile1> {
             ),
             
              LogoutButton(data: data, scale: scale),
-
-             
+   
           ]),
           // SizedBox(height: 10),
           // ElevatedButton(onPressed: (){

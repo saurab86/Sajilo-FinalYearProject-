@@ -80,6 +80,7 @@ flutter:
     - assets/appbarimage/laptop.png
     - assets/appbarimage/ACRepair.jpg
     - assets/appbarimage/bike.png
+    - assets/appbarimage/bikeservicing.png
     - assets/appbarimage/tvrepair.png
     - assets/appbarimage/barber.jpg
     - assets/appbarimage/plumber.jpg

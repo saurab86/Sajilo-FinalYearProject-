@@ -10,9 +10,37 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sajilo/Helper/NetworkHelper.dart';
+import 'package:sajilo/bookingpages/ac_repairing.dart';
+import 'package:sajilo/bookingpages/bike_reparing.dart';
+import 'package:sajilo/bookingpages/car_servicing.dart';
+import 'package:sajilo/bookingpages/electricity_servicing.dart';
+import 'package:sajilo/bookingpages/furniture.dart';
+import 'package:sajilo/bookingpages/haircut.dart';
+import 'package:sajilo/bookingpages/house_painting.dart';
+import 'package:sajilo/bookingpages/laptop_repair.dart';
+import 'package:sajilo/bookingpages/plumbing_service.dart';
+import 'package:sajilo/bookingpages/tv_repair.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 
+var services = [
+  "House Painting",
+  "Laptop Reparing and Servicing",
+  "Electricty Reparing",
+  "Car Reparing and Servicing",
+  "Tv Reparing",
+  "Ac Reparing and Maintenence",
+  "Bike Reparing and Servicing",
+  "Haircut Service",
+  "Furniture ",
+  "Plumbing Service",
+ // "test"
+];
+
+
+// ignore: must_be_immutable
 class Maps extends StatefulWidget {
+  String routekey;
+  Maps({this.routekey});
   @override
   _MapsState createState() => _MapsState();
 }
@@ -256,7 +284,44 @@ class _MapsState extends State<Maps> {
                                 )),
                                 SizedBox(height:15),
                                 ElevatedButton(onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (_)=>SecondPage(sourcename :sourceName)));
+                               // Navigator.push(context, MaterialPageRoute(builder: (_)=>SecondPage(sourcename :sourceName)));
+                                  if(widget.routekey=="House Painting"){
+                                    Navigator.of(context).push(HousepantingAnimationPage());       
+                                  }     
+                                  else if(widget.routekey=="Laptop Reparing and Servicing"){
+                                    Navigator.of(context).push(LaptopServiceAnimationPage());
+                                  }  
+                                  else if(widget.routekey=="Electricty Reparing"){
+                                    Navigator.of(context).push(ElectricityAnimationPage());
+                                  } 
+                                   else if(widget.routekey=="Car Reparing and Servicing"){
+                                    Navigator.of(context).push(CarServiceAnimationPage());
+                                  } 
+                                  else if(widget.routekey=="Tv Reparing"){
+                                    Navigator.of(context).push(TvServiceAnimationPage());
+                                  } 
+                                  else if(widget.routekey=="Ac Reparing and Maintenence"){
+                                    Navigator.of(context).push(ACreparingAnimationPage());
+                                  } 
+
+                                  else if(widget.routekey=="Bike Reparing and Servicing"){
+                                    Navigator.of(context).push(BikeserviceAnimationPage());
+                                  } 
+                                  else if(widget.routekey=="Haircut Service"){
+                                    Navigator.of(context).push(HairCutAnimationPage());
+                                  }
+                                   else if(widget.routekey=="Furniture"){
+                                    Navigator.of(context).push(FurnitureServiceAnimationPage());
+                                  }
+                                   else if(widget.routekey=="Plumbing Service"){
+                                    Navigator.of(context).push(PlumbingAnimationPage());
+                                  }
+                                  
+
+
+
+                                  
+                                  
 
                                 }, child: Text("test button")),
                           SizedBox(height: 100.0),
@@ -333,10 +398,12 @@ class _MapsState extends State<Maps> {
                                 bookRide();
                                 setAddress();
                                 
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => NavHome()));
+                               
+
+                                // Navigator.pushReplacement(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (_) => NavHome()));
                               },
                             ),
 

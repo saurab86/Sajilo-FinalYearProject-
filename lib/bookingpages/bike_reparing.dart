@@ -74,7 +74,7 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
               centerTitle: true,
               titlePadding: EdgeInsets.only(top: 2.0),
               background: Image.asset(
-                'assets/appbarimage/bike.png',
+                'assets/appbarimage/bikeservicing.png',
                 fit: BoxFit.cover,
               ),
             ),

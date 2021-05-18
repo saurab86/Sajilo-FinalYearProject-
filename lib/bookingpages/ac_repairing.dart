@@ -6,18 +6,17 @@ import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-
+import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 class ACreparingAnimationPage extends CupertinoPageRoute {
-   ACreparingAnimationPage()
+  ACreparingAnimationPage()
       : super(builder: (BuildContext context) => new AcRepairService());
 
   // OPTIONAL IF YOU WISH TO HAVE SOME EXTRA ANIMATION WHILE ROUTING
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation) {
-    return new FadeTransition(
-        opacity: animation, child: new AcRepairService());
+    return new FadeTransition(opacity: animation, child: new AcRepairService());
   }
 }
 
@@ -31,7 +30,8 @@ class _AcRepairServiceState extends State<AcRepairService> {
   TextEditingController _nameController,
       _mobilenumberController,
       _addressController,
-      _wardController;
+      _wardController,
+      _descriptionController;
   DatabaseReference _ref;
   @override
   void initState() {
@@ -40,6 +40,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
     _mobilenumberController = TextEditingController();
     _addressController = TextEditingController();
     _wardController = TextEditingController();
+    _descriptionController = TextEditingController();
     _ref = FirebaseDatabase.instance.reference().child('BookingInfo');
   }
 
@@ -50,9 +51,12 @@ class _AcRepairServiceState extends State<AcRepairService> {
     _mobilenumberController.dispose();
     _wardController.dispose();
     _addressController.dispose();
+    _descriptionController.dispose();
   }
 
   Widget build(BuildContext context) {
+    ScreenScaler scale = ScreenScaler();
+
     AuthService data = Provider.of<AuthService>(context);
     DateTime now = new DateTime.now();
     Text('Time and Date: $now');
@@ -93,7 +97,32 @@ class _AcRepairServiceState extends State<AcRepairService> {
               child: SingleChildScrollView(
                 child: Column(children: [
                   SizedBox(
-                    height: 18.0,
+                    height: 25.0,
+                  ),
+                  Image.asset(
+                    'assets/images/acrate.png',
+                    height: scale.getFullScreen(30),
+                  ),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  TextFormField(
+                    controller: _descriptionController,
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_circle),
+                      hintText: 'Describe Your Problem',
+                      labelText: 'Description',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                    maxLines: 3,
+                  ),
+                  SizedBox(
+                    height: 12.0,
                   ),
 
                   //Full Name
@@ -108,7 +137,6 @@ class _AcRepairServiceState extends State<AcRepairService> {
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green),
                           borderRadius: BorderRadius.all(Radius.circular(30))),
-                        
                       border: OutlineInputBorder(borderSide: BorderSide()),
                     ),
                   ),
@@ -158,7 +186,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
                     controller: _mobilenumberController,
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                     prefixIcon:Icon(LineAwesomeIcons.mobile_phone) ,
+                      prefixIcon: Icon(LineAwesomeIcons.mobile_phone),
                       hintText: 'Example: 98********',
                       labelText: 'Enter Mobile Number',
                       labelStyle: TextStyle(color: Colors.white),
@@ -224,7 +252,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
                                   ],
                                 ));
                       } else {
-                        saveBooking(data.userInfo, data.userID,now);
+                        saveBooking(data.userInfo, data.userID, now);
                       }
                     },
                     child: Text(
@@ -264,7 +292,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
       'email': emailid,
       'UserID': userID,
       'BookingStatus': x,
-      'BookedTimeAndDate':y,
+      'BookedTimeAndDate': y,
     };
     _ref.push().set(bookinginfo);
 
@@ -289,16 +317,20 @@ class _AcRepairServiceState extends State<AcRepairService> {
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavHome()));
-                     Flushbar(
-                       icon: Icon(Icons.done_all_sharp,size: 32.0,color: Colors.blue,),
-                       title: 'Successfully Booked',
-                       message: 'AC reparing services',
-                       flushbarPosition: FlushbarPosition.TOP,
-                       duration: Duration(seconds: 2),
-                       onTap: (_){},
-
-                     ).show(context); 
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => NavHome()));
+                      Flushbar(
+                        icon: Icon(
+                          Icons.done_all_sharp,
+                          size: 32.0,
+                          color: Colors.blue,
+                        ),
+                        title: 'Successfully Booked',
+                        message: 'AC reparing services',
+                        flushbarPosition: FlushbarPosition.TOP,
+                        duration: Duration(seconds: 2),
+                        onTap: (_) {},
+                      ).show(context);
                     },
                     child: Text(
                       'OK',

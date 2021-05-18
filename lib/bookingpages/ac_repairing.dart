@@ -106,6 +106,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
                   SizedBox(
                     height: 12.0,
                   ),
+                  Text('Please fill up the firm',style: TextStyle(fontFamily: 'Newsreader',)),
                   TextFormField(
                     controller: _descriptionController,
                     cursorColor: Colors.white,

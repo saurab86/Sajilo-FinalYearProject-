@@ -5,6 +5,7 @@ import 'package:sajilo/bookingpages/car_servicing.dart';
 import 'package:sajilo/bookingpages/electricity_servicing.dart';
 import 'package:sajilo/bookingpages/furniture.dart';
 import 'package:sajilo/bookingpages/haircut.dart';
+// ignore: unused_import
 import 'package:sajilo/bookingpages/house_painting.dart';
 import 'package:sajilo/bookingpages/laptop_repair.dart';
 import 'package:sajilo/bookingpages/plumbing_service.dart';

@@ -3,6 +3,8 @@ import 'dart:io';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -20,6 +22,7 @@ class _MapsState extends State<Maps> {
   GoogleMapController mapController;
   double mapBottomPadding = 0;
   double searchSheetWidget = (Platform.isIOS) ? 300 : 305;
+  DatabaseReference _ref;
 
   //FocusNode phoneNumberFocus;
   //TextEditingController phoneController;
@@ -32,7 +35,7 @@ class _MapsState extends State<Maps> {
 
   LatLng sourceLatLng;
   //LatLng destinationLatLng;
-  String sourceName = "";
+   String sourceName = "";
   //String destinationName = "";
   //TimeOfDay selectedTime;
 
@@ -55,6 +58,9 @@ class _MapsState extends State<Maps> {
     //phoneNumberFocus = FocusNode();
     //phoneController = TextEditingController();
     getJsonData();
+         sourceName = "";
+        _ref = FirebaseDatabase.instance.reference().child('AddressFromMap');
+
   }
 
   @override
@@ -248,7 +254,14 @@ class _MapsState extends State<Maps> {
                                     });
                                   },
                                 )),
-                      SizedBox(height: 100.0),
+                                SizedBox(height:15),
+                                ElevatedButton(onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (_)=>SecondPage(sourcename :sourceName)));
+
+                                }, child: Text("test button")),
+                          SizedBox(height: 100.0),
+
+                    
                       //  ElevatedButton(
                       //   style:ElevatedButton.styleFrom(primary:Colors.blueGrey),
                       //   //color: Colors.redAccent,
@@ -318,12 +331,16 @@ class _MapsState extends State<Maps> {
                               child: Text('Next'),
                               onPressed: () {
                                 bookRide();
+                                setAddress();
+                                
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (_) => NavHome()));
                               },
                             ),
+
+
                           ],
                         ),
                       )
@@ -399,7 +416,30 @@ class _MapsState extends State<Maps> {
     } catch (e) {
       print(e.toString());
     }
+
+ 
   }
+
+
+     void setAddress() {
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String sourceLat = sourceLatLng.latitude.toString();
+  String sourceLng = sourceLatLng.longitude.toString();
+  Map<String, String> addressfromMap = {
+    'Latitude': sourceLat,
+    'Longitude':sourceLng,
+    'sourceName': sourceName,
+    'user_id': auth.currentUser.uid ?? "",
+    'user_name': auth.currentUser.displayName ?? "",
+    'user_email': auth.currentUser.email ?? "",
+    'profile_img': auth.currentUser.photoURL ?? "",
+  };
+  _ref.push().update(addressfromMap);
+
+}
+
+
 
   String calculateDistance(lat1, lon1, lat2, lon2) {
     var p = 0.017453292519943295;
@@ -421,4 +461,40 @@ class _MapsState extends State<Maps> {
 class LineString {
   LineString(this.lineString);
   List<dynamic> lineString;
+}
+
+
+// ignore: must_be_immutable
+class SecondPage extends StatefulWidget {
+  String sourcename;
+  SecondPage({this.sourcename});
+  @override
+  _SecondPageState createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> {
+  
+
+  @override
+  Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    return Scaffold(
+      appBar: AppBar(
+        title:  Text("Test widget"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+          Text("This is Test Page",style: TextStyle(fontSize: 20,fontFamily: 'Newsreader'),),
+          SizedBox(height: 18,),
+          Text(widget.sourcename,
+          style: TextStyle(fontSize: 20,fontFamily: 'Newsreader')),
+          SizedBox(height: 10,),
+          Text( auth.currentUser.email,style: TextStyle(fontFamily: 'Newsreader',fontSize: 18),),
+        ],)
+      ),
+      
+    );
+  }
 }

@@ -11,8 +11,7 @@ import 'package:sajilo/services/auth.dart';
 class UpdateProfile extends StatefulWidget {
   String profileKey;
   UpdateProfile({this.profileKey});
-  @override
-  
+  @override  
   _UpdateProfileState createState() => _UpdateProfileState();
 }
 
@@ -21,7 +20,6 @@ class _UpdateProfileState extends State<UpdateProfile> {
       _addressController,
       _wardController,
       _mobileNumberController;
-
       DatabaseReference _ref;
   // String _name,_address,_ward,_mobilenmbr;
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
@@ -63,7 +61,7 @@ void initState(){
               children: [
                 Padding(
                     padding: EdgeInsets.only(left: 10, right: 10, bottom: 15)),
-
+                      
                 //User Name
                 TextFormField(
                   controller: _nameController,
@@ -182,6 +180,7 @@ void initState(){
                       return saveProfile(data.userID);
                     }
                     else print('Unsucessfull');
+                    
                   },
                   child: Text(
                     'Update',

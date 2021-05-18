@@ -277,6 +277,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
     String emailid = a;
     String x;
     String y = now.toString();
+    String acdescription = _descriptionController.text;
     if (bookingstatus == true) {
       x = "Pending";
     } else {
@@ -293,6 +294,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
       'UserID': userID,
       'BookingStatus': x,
       'BookedTimeAndDate': y,
+      'Problem Description': acdescription,
     };
     _ref.push().set(bookinginfo);
 

@@ -2,20 +2,21 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
+import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 class PlumbingAnimationPage extends CupertinoPageRoute {
-   PlumbingAnimationPage()
+  PlumbingAnimationPage()
       : super(builder: (BuildContext context) => new PlumbingService());
 
   // OPTIONAL IF YOU WISH TO HAVE SOME EXTRA ANIMATION WHILE ROUTING
   @override
   Widget buildPage(BuildContext context, Animation<double> animation,
       Animation<double> secondaryAnimation) {
-    return new FadeTransition(
-        opacity: animation, child: new PlumbingService());
+    return new FadeTransition(opacity: animation, child: new PlumbingService());
   }
 }
 
@@ -25,13 +26,13 @@ class PlumbingService extends StatefulWidget {
 }
 
 class _PlumbingServiceState extends State<PlumbingService> {
+  bool bookingstatus = true;
   TextEditingController _nameController,
       _mobilenumberController,
       _addressController,
-      _wardController;
-
+      _wardController,
+      _descriptionController;
   DatabaseReference _ref;
-
   @override
   void initState() {
     super.initState();
@@ -39,6 +40,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
     _mobilenumberController = TextEditingController();
     _addressController = TextEditingController();
     _wardController = TextEditingController();
+    _descriptionController = TextEditingController();
     _ref = FirebaseDatabase.instance.reference().child('BookingInfo');
   }
 
@@ -49,12 +51,16 @@ class _PlumbingServiceState extends State<PlumbingService> {
     _mobilenumberController.dispose();
     _wardController.dispose();
     _addressController.dispose();
+    _descriptionController.dispose();
   }
 
   Widget build(BuildContext context) {
+    ScreenScaler scale = ScreenScaler();
+
     AuthService data = Provider.of<AuthService>(context);
-    DateTime now = DateTime.now();
-    return Scaffold(
+    DateTime now = new DateTime.now();
+    Text('Time and Date: $now');
+    return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
@@ -65,17 +71,20 @@ class _PlumbingServiceState extends State<PlumbingService> {
               color: Colors.black,
             ),
             expandedHeight: 250.0,
-            floating: false,
+            floating: true,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.parallax,
               title: Text(
-                "Plumbing Service",
+                "Plumbing services",
                 style: TextStyle(
                     fontFamily: 'Rubik',
                     fontWeight: FontWeight.bold,
-                    fontSize: 13.0),
+                    fontSize: 13.0,
+                    color: Colors.black),
               ),
+              titlePadding: EdgeInsets.only(top: 2.0),
+              centerTitle: true,
               background: Image.asset(
                 'assets/appbarimage/plumber.jpg',
                 fit: BoxFit.cover,
@@ -88,15 +97,41 @@ class _PlumbingServiceState extends State<PlumbingService> {
               child: SingleChildScrollView(
                 child: Column(children: [
                   SizedBox(
-                    height: 18.0,
+                    height: 25.0,
+                  ),
+                  Image.asset(
+                    'assets/images/p1.png',
+                    height: scale.getFullScreen(45),
+                  ),
+                  Image.asset(
+                    'assets/images/p2.png',
+                    height: scale.getFullScreen(30),
                   ),
 
                   SizedBox(
-                    height: 10,
+                    height: 12.0,
+                  ),
+                  TextFormField(
+                    controller: _descriptionController,
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_circle),
+                      hintText: 'Describe Your Problem',
+                      labelText: 'Description',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                    maxLines: 3,
+                  ),
+                  SizedBox(
+                    height: 12.0,
                   ),
 
                   //Full Name
-                  TextField(
+                  TextFormField(
                     controller: _nameController,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
@@ -105,7 +140,8 @@ class _PlumbingServiceState extends State<PlumbingService> {
                       labelText: 'Full Name',
                       labelStyle: TextStyle(color: Colors.white),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
                       border: OutlineInputBorder(borderSide: BorderSide()),
                     ),
                   ),
@@ -149,13 +185,13 @@ class _PlumbingServiceState extends State<PlumbingService> {
                   SizedBox(
                     height: 12.0,
                   ),
+//
 
-                  //Mobile Number
                   TextFormField(
                     controller: _mobilenumberController,
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.phone_iphone),
+                      prefixIcon: Icon(LineAwesomeIcons.mobile_phone),
                       hintText: 'Example: 98********',
                       labelText: 'Enter Mobile Number',
                       labelStyle: TextStyle(color: Colors.white),
@@ -187,7 +223,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
 
                   //Book Button
                   ElevatedButton(
-                    //color: Colors.redAccent,
+                    // color: Colors.redAccent,
                     onPressed: () {
                       if (_nameController.text.isEmpty ||
                           _addressController.text.isEmpty ||
@@ -221,7 +257,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
                                   ],
                                 ));
                       } else {
-                        saveBooking(data.userInfo, data.userID,now);
+                        saveBooking(data.userInfo, data.userID, now);
                       }
                     },
                     child: Text(
@@ -237,27 +273,34 @@ class _PlumbingServiceState extends State<PlumbingService> {
     );
   }
 
-  void saveBooking(String a, String userID,now) {
+  void saveBooking(String a, String userID, now) {
     String name = _nameController.text;
     String address = _addressController.text;
     String ward = _wardController.text;
     String mobilenumber = _mobilenumberController.text;
     String service = "Plumbing Service";
     String emailid = a;
-    String bookingstatus = 'Pending';
+    String x;
     String y = now.toString();
+    if (bookingstatus == true) {
+      x = "Pending";
+    } else {
+      x = "Accepted";
+    }
+
     Map<String, String> bookinginfo = {
       'name': name,
       'address': address,
       'ward': ward,
       'mobilenumber': mobilenumber,
       'service': service,
-      "email": emailid,
+      'email': emailid,
       'UserID': userID,
-      'BookingStatus': bookingstatus,
-      'BookedTimeAndDate':y,
+      'BookingStatus': x,
+      'BookedTimeAndDate': y,
     };
     _ref.push().set(bookinginfo);
+
     showDialog(
         barrierDismissible: false,
         context: context,
@@ -272,32 +315,27 @@ class _PlumbingServiceState extends State<PlumbingService> {
                 textAlign: TextAlign.center,
               ),
               content: new Text(
-                "You Have Successfully Booked House Panting Service.",
+                "You Have Successfully Booked Plumbing Service.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16.0),
               ),
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavHome()));
-                     Flushbar(
-                       icon: Icon(Icons.done_all_sharp,size: 32.0,color: Colors.blue,),
-                       title: 'Successfully Booked',
-                       message: 'Plumbing services',
-                       flushbarPosition: FlushbarPosition.TOP,
-                       duration: Duration(seconds: 2),
-                       flushbarStyle: FlushbarStyle.FLOATING,
-                     ).show(context);
-                      // Fluttertoast.showToast(
-                      //         msg: "Plumbing Services",
-                      //         toastLength: Toast.LENGTH_SHORT,
-                      //         gravity: ToastGravity.BOTTOM,
-                      //         timeInSecForIosWeb: 4,
-                      //         backgroundColor: Colors.teal,
-                      //         textColor: Colors.white,
-                      //         fontSize: 16.0)
-                      //     .then((value) => Navigator.pushReplacement(context,
-                      //         MaterialPageRoute(builder: (_) => NavHome())));
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => NavHome()));
+                      Flushbar(
+                        icon: Icon(
+                          Icons.done_all_sharp,
+                          size: 32.0,
+                          color: Colors.blue,
+                        ),
+                        title: 'Successfully Booked',
+                        message: 'Plumbing reparing',
+                        flushbarPosition: FlushbarPosition.TOP,
+                        duration: Duration(seconds: 2),
+                        onTap: (_) {},
+                      ).show(context);
                     },
                     child: Text(
                       'OK',

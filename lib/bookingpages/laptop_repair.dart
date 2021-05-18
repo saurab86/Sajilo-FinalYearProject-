@@ -2,13 +2,14 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
-
+import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 class LaptopServiceAnimationPage extends CupertinoPageRoute {
-   LaptopServiceAnimationPage()
+  LaptopServiceAnimationPage()
       : super(builder: (BuildContext context) => new LaptopRepBooking());
 
   // OPTIONAL IF YOU WISH TO HAVE SOME EXTRA ANIMATION WHILE ROUTING
@@ -19,37 +20,54 @@ class LaptopServiceAnimationPage extends CupertinoPageRoute {
         opacity: animation, child: new LaptopRepBooking());
   }
 }
+
 class LaptopRepBooking extends StatefulWidget {
   @override
   _LaptopRepBookingState createState() => _LaptopRepBookingState();
 }
 
 class _LaptopRepBookingState extends State<LaptopRepBooking> {
+  bool bookingstatus = true;
   TextEditingController _nameController,
+      _mobilenumberController,
       _addressController,
       _wardController,
-      _mobilenumberController;
-
+      _descriptionController;
   DatabaseReference _ref;
   @override
   void initState() {
     super.initState();
     _nameController = TextEditingController();
+    _mobilenumberController = TextEditingController();
     _addressController = TextEditingController();
     _wardController = TextEditingController();
-    _mobilenumberController = TextEditingController();
+    _descriptionController = TextEditingController();
     _ref = FirebaseDatabase.instance.reference().child('BookingInfo');
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _nameController.dispose();
+    _mobilenumberController.dispose();
+    _wardController.dispose();
+    _addressController.dispose();
+    _descriptionController.dispose();
+  }
+
   Widget build(BuildContext context) {
+    ScreenScaler scale = ScreenScaler();
+
     AuthService data = Provider.of<AuthService>(context);
-    DateTime now = DateTime.now();
+    DateTime now = new DateTime.now();
+    Text('Time and Date: $now');
     return new Scaffold(
       backgroundColor: Colors.teal,
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: true,
             leading: BackButton(
               color: Colors.black,
             ),
@@ -63,8 +81,11 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                 style: TextStyle(
                     fontFamily: 'Rubik',
                     fontWeight: FontWeight.bold,
-                    fontSize: 13.0),
+                    fontSize: 13.0,
+                    color: Colors.white),
               ),
+              titlePadding: EdgeInsets.only(top: 2.0),
+              centerTitle: true,
               background: Image.asset(
                 'assets/appbarimage/laptop.png',
                 fit: BoxFit.cover,
@@ -76,12 +97,40 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
               hasScrollBody: true,
               child: SingleChildScrollView(
                 child: Column(children: [
+                  // SizedBox(
+                  //  height: 25.0,
+                  //),
+                  Image.asset(
+                    'assets/images/c1.png',
+                    height: scale.getFullScreen(45),
+                  ),
+
+                  Image.asset(
+                    'assets/images/c2.png',
+                    height: scale.getFullScreen(25),
+                  ),
+
+                  TextFormField(
+                    controller: _descriptionController,
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_circle),
+                      hintText: 'Describe Your Problem',
+                      labelText: 'Description',
+                      labelStyle: TextStyle(color: Colors.white),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                    maxLines: 3,
+                  ),
                   SizedBox(
-                    height: 18.0,
+                    height: 12.0,
                   ),
 
                   //Full Name
-                  TextField(
+                  TextFormField(
                     controller: _nameController,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
@@ -90,7 +139,8 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                       labelText: 'Full Name',
                       labelStyle: TextStyle(color: Colors.white),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
                       border: OutlineInputBorder(borderSide: BorderSide()),
                     ),
                   ),
@@ -140,7 +190,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                     controller: _mobilenumberController,
                     keyboardType: TextInputType.phone,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.phone_iphone),
+                      prefixIcon: Icon(LineAwesomeIcons.mobile_phone),
                       hintText: 'Example: 98********',
                       labelText: 'Enter Mobile Number',
                       labelStyle: TextStyle(color: Colors.white),
@@ -181,14 +231,17 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                         showDialog(
                             context: context,
                             builder: (_) => AlertDialog(
-                                  shape: RoundedRectangleBorder(),
-                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(14.0)),
+                                  backgroundColor: Colors.blueGrey[200],
                                   title: new Text(
                                     "Error",
                                     textAlign: TextAlign.center,
                                   ),
                                   content: new Text(
-                                    "Please fill up the all the description before booking",
+                                    "Please fill up all the description before booking.",
+                                    textAlign: TextAlign.center,
                                     style: TextStyle(fontSize: 16.0),
                                   ),
                                   actions: <Widget>[
@@ -196,11 +249,14 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
-                                        child: Text('OK'))
+                                        child: Text(
+                                          'OK',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ))
                                   ],
                                 ));
                       } else {
-                        saveBooking(data.userInfo, data.userID,now);
+                        saveBooking(data.userInfo, data.userID, now);
                       }
                     },
                     child: Text(
@@ -216,15 +272,20 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     );
   }
 
-  void saveBooking(String a, String userID,now) {
+  void saveBooking(String a, String userID, now) {
     String name = _nameController.text;
     String address = _addressController.text;
     String ward = _wardController.text;
     String mobilenumber = _mobilenumberController.text;
     String service = "Laptop Reparing";
     String emailid = a;
-    String bookingstatus = 'Pending';
+    String x;
     String y = now.toString();
+    if (bookingstatus == true) {
+      x = "Pending";
+    } else {
+      x = "Accepted";
+    }
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -234,10 +295,11 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
       'service': service,
       'email': emailid,
       'UserID': userID,
-      'BookingStatus': bookingstatus,
+      'BookingStatus': x,
       'BookedTimeAndDate': y,
     };
     _ref.push().set(bookinginfo);
+
     showDialog(
         barrierDismissible: false,
         context: context,
@@ -252,22 +314,27 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                 textAlign: TextAlign.center,
               ),
               content: new Text(
-                "You Have Successfully Booked Laptop Reparing Service.",
+                "You Have Successfully Booked Laptop Reparing.",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16.0),
               ),
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
-                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavHome()));
-                     Flushbar(
-                       icon: Icon(Icons.done_all_sharp,size: 32.0,color: Colors.blue,),
-                       title: 'Successfully Booked',
-                       message: 'Laptop reparing services',
-                       flushbarPosition: FlushbarPosition.TOP,
-                       duration: Duration(seconds: 2),
-                       flushbarStyle: FlushbarStyle.FLOATING,
-                     ).show(context);
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (_) => NavHome()));
+                      Flushbar(
+                        icon: Icon(
+                          Icons.done_all_sharp,
+                          size: 32.0,
+                          color: Colors.blue,
+                        ),
+                        title: 'Successfully Booked',
+                        message: 'Laptop problem',
+                        flushbarPosition: FlushbarPosition.TOP,
+                        duration: Duration(seconds: 2),
+                        onTap: (_) {},
+                      ).show(context);
                     },
                     child: Text(
                       'OK',

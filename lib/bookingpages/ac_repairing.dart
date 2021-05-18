@@ -101,7 +101,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
                   ),
                   Image.asset(
                     'assets/images/acrate.png',
-                    height: scale.getFullScreen(30),
+                    height: scale.getFullScreen(35),
                   ),
                   SizedBox(
                     height: 12.0,

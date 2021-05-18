@@ -13,36 +13,39 @@ import 'package:sajilo/bookingpages/testtab.dart';
 import 'package:sajilo/bookingpages/tv_repair.dart';
 
 var services = [
-  "House Painting",
-  "Laptop Reparing and Servicing",
   "Electricty Reparing",
-  "Car Reparing and Servicing",
-  "Tv Reparing",
+  "Plumbing Service",
+  "Laptop Reparing and Servicing",
   "Ac Reparing and Maintenence",
+  "Car Reparing and Servicing",
+  "House Painting",
+  "Tv Reparing",
   "Bike Reparing and Servicing",
   "Haircut Service",
   "Furniture ",
-  "Plumbing Service",
- // "test"
+
+  // "test"
 ];
 var img = [
-  "assets/serviceimage/paintingIcon.png",
-  "assets/serviceimage/laptop.png",
   "assets/serviceimage/electricity.png",
+  "assets/serviceimage/plumbing.png",
+  "assets/serviceimage/laptop.png",
+  "assets/serviceimage/ac.png",
+  "assets/serviceimage/paintingIcon.png",
   "assets/serviceimage/car.png",
   "assets/serviceimage/tv.png",
-  "assets/serviceimage/ac.png",
   "assets/serviceimage/bike.png",
   "assets/serviceimage/haircut.png",
   "assets/serviceimage/furniture.png",
-  "assets/serviceimage/plumbing.png",
- // "assets/serviceimage/plumbing.png",
+
+  // "assets/serviceimage/plumbing.png",
 ];
 
 var bookingsroutes = [
+  "ElectricityBooking()",
   "HousePaintingBooking()",
   "LaptopBooking()",
-  "ElectricityBooking()",
+
   "CarBooking()",
   "TvBooking()",
   "AcBooking()",
@@ -50,7 +53,7 @@ var bookingsroutes = [
   "HairCutBooking()",
   "FurnitureBooking()",
   "HaircutBooking()",
- // "TestClass()"
+  // "TestClass()"
 ];
 
 class MainHome extends StatefulWidget {
@@ -61,9 +64,8 @@ class MainHome extends StatefulWidget {
 class _MainHomeState extends State<MainHome> {
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
-          body: GridView.builder(
+      body: GridView.builder(
           physics: BouncingScrollPhysics(),
           itemCount: 10,
           gridDelegate:
@@ -80,29 +82,25 @@ class _MainHomeState extends State<MainHome> {
                 splashColor: Colors.green.withAlpha(30),
                 onTap: () {
                   if (index == 0) {
-                    Navigator.of(context).push(HousepantingAnimationPage());
-                  } else if (index == 1) {
-                   Navigator.of(context).push(LaptopServiceAnimationPage());
-                  } else if (index == 2) {
                     Navigator.of(context).push(ElectricityAnimationPage());
-                  } else if (index == 3) {
-                    Navigator.of(context).push(CarServiceAnimationPage());
-                  } else if (index == 4) {
-                    Navigator.of(context).push(TvServiceAnimationPage());
-                  } else if (index == 5) {
-                    Navigator.of(context).push(ACreparingAnimationPage());
-                  } else if (index == 6) {
-                    Navigator.of(context).push(BikeserviceAnimationPage());
-                  } else if (index == 7) {
-                    Navigator.of(context).push(HairCutAnimationPage());
-                  } else if (index == 8) {
-                    Navigator.of(context).push(FurnitureServiceAnimationPage());
-
-
-
-
-                  } else if (index == 9){
+                  } else if (index == 1) {
                     Navigator.of(context).push(PlumbingAnimationPage());
+                  } else if (index == 2) {
+                    Navigator.of(context).push(LaptopServiceAnimationPage());
+                  } else if (index == 3) {
+                    Navigator.of(context).push(ACreparingAnimationPage());
+                  } else if (index == 4) {
+                    Navigator.of(context).push(CarServiceAnimationPage());
+                  } else if (index == 5) {
+                    Navigator.of(context).push(HousepantingAnimationPage());
+                  } else if (index == 6) {
+                    Navigator.of(context).push(TvServiceAnimationPage());
+                  } else if (index == 7) {
+                    Navigator.of(context).push(BikeserviceAnimationPage());
+                  } else if (index == 8) {
+                    Navigator.of(context).push(HairCutAnimationPage());
+                  } else if (index == 9) {
+                    Navigator.of(context).push(FurnitureServiceAnimationPage());
                   }
                   // else if (index ==10){
                   //   Navigator.push(context, MaterialPageRoute(builder: (context)=>TestClass()));
@@ -138,7 +136,6 @@ class _MainHomeState extends State<MainHome> {
               ),
             );
           }),
-
     );
   }
 }

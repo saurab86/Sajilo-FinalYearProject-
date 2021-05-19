@@ -33,14 +33,18 @@ class ElectricityBooking extends StatefulWidget {
 class _ElectricityBookingState extends State<ElectricityBooking> {
   bool bookingstatus = true;
   TextEditingController
-      _descriptionController;
+      _descriptionController, _nameController,
+      _mobilenumberController;
   DatabaseReference _ref;
   @override
   void initState() {
     super.initState();
     //_addressController = TextEditingController();
     _descriptionController = TextEditingController();
+    _nameController =TextEditingController();
+    _mobilenumberController = TextEditingController();
     _ref = FirebaseDatabase.instance.reference().child('BookingInfo');
+    
   }
 
   @override
@@ -49,6 +53,10 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
   
     _descriptionController.dispose();
   }
+
+
+
+
 
   Widget build(BuildContext context) {
     ScreenScaler scale = ScreenScaler();
@@ -102,28 +110,28 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     height: scale.getFullScreen(35),
                   ),
                   SizedBox(
-                    height: 12.0,
+                    height: 10.0,
                   ),
                   Image.asset(
                     'assets/images/e2.png',
                     height: scale.getFullScreen(25),
                   ),
                   SizedBox(
-                    height: 12.0,
+                    height: 10.0,
                   ),
                   Image.asset(
                     'assets/images/e3.png',
                     height: scale.getFullScreen(30),
                   ),
                   SizedBox(
-                    height: 12.0,
+                    height: 10.0,
                   ),
                   Image.asset(
                     'assets/images/e4.png',
                     height: scale.getFullScreen(25),
                   ),
                   SizedBox(
-                    height: 12.0,
+                    height: 10.0,
                   ),
 
                    Container(
@@ -136,10 +144,47 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     SizedBox(height:5),
                   Text(widget.sourcename,style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
                   SizedBox(height:12),
+                    Text(data.userInfo,style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
                       ],),
                    ),
-                   
-                                    
+                   SizedBox(height: 12,),
+                   //Full Name
+                  TextFormField(
+                    controller: _nameController,
+                    keyboardType: TextInputType.text,
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_circle),
+                      hintText: 'Example:Jon Legend',
+                      hintStyle: TextStyle(fontFamily: 'Newsreader',color: Colors.black),
+                      labelText: 'Full Name',
+                      labelStyle: TextStyle(color: Colors.black,fontFamily: 'Newsreader'),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                  ),
+
+                  SizedBox(height: 12,),
+
+                  TextFormField(
+                    controller: _mobilenumberController,
+                    keyboardType: TextInputType.phone,
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.phone),
+                      hintText: 'Example:+97798*******',
+                      hintStyle: TextStyle(fontFamily: 'Newsreader',color: Colors.black),
+                      labelText: 'Mobile Number',
+                      labelStyle: TextStyle(color: Colors.black),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                  ),
+                     SizedBox(height: 12,),               
                   //Problem Description Textfeild
                   TextFormField(
                     controller: _descriptionController,
@@ -161,23 +206,17 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     height: 12.0,
                   ),
 
+               
+
+                  
                   //Full Name
                   
                   
-
                   //Address
                  
                   SizedBox(
                     height: 12.0,
                   ),
-
-                  //Ward No.
-                  
-
-                 
-//
-
-                  
 
 
                  
@@ -228,19 +267,39 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                       style:
                           TextStyle(fontFamily: 'Newsreader', color: Colors.white,fontSize: 18),
                     ),
-                  )
+                  ),
+
                 ]),
               ))
         ],
+       
       ),
+      
     );
   }
 
+
+
+Widget buildUserProfile({Map userprofile}){
+  AuthService data = Provider.of<AuthService>(context);
+  return SafeArea(child: 
+  Container(alignment: Alignment.center,
+      child: Column(children: [
+      Text(userprofile['Name']),
+      SizedBox(height:10),
+      Text(data.userInfo),
+      SizedBox(height:10),
+      Text(userprofile['MobileNumber'])
+    ],),
+  ));
+}
+
+
   void saveBooking(String a, String userID, now) {
-   // String name = _nameController.text;
+    String name = _nameController.text;
     String address = widget.sourcename;
   ///  String ward = _wardController.text;
-   // String mobilenumber = _mobilenumberController.text;
+    String mobilenumber = _mobilenumberController.text;
     String service = "electrical Reparing";
     String problem = _descriptionController.text;
     String emailid = a;
@@ -253,10 +312,10 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
     }
 
     Map<String, String> bookinginfo = {
-      //'name': name,
+      'name': name,
       'address': address,
       //'ward': ward,
-      //'mobilenumber': mobilenumber,
+      'mobilenumber': mobilenumber,
       'Problem Description': problem,
       'service': service,
       'email': emailid,

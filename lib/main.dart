@@ -13,6 +13,7 @@ void main() async {
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,12 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthService(),
         ),
         StreamProvider(
-            create: (contex) => contex.read<AuthService>().authStateChanges)
+            create: (contex) => contex.read<AuthService>().authStateChanges),
+            
       ],
       child: MaterialApp(
         title: 'Sajilo',
-        home: Welcome(),
+        home:Welcome() ,
         theme: ThemeData(primaryColor: Colors.blueAccent),
         debugShowCheckedModeBanner: false,
       ),

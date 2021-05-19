@@ -7,6 +7,8 @@ import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
 
 class BikeserviceAnimationPage extends CupertinoPageRoute {
+ 
+
    BikeserviceAnimationPage()
       : super(builder: (BuildContext context) => new BikeReparingService());
 
@@ -19,7 +21,10 @@ class BikeserviceAnimationPage extends CupertinoPageRoute {
   }
 }
 
+// ignore: must_be_immutable
 class BikeReparingService extends StatefulWidget {
+  String autofetch;
+BikeReparingService({this.autofetch});
   @override
   _BikeReparingServiceState createState() => _BikeReparingServiceState();
 }
@@ -89,9 +94,11 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
 
                   //Full Name
                   TextField(
+                     
                     controller: _nameController,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
+                      fillColor: Colors.white,
                       prefixIcon: Icon(Icons.account_circle),
                       hintText: 'Example:Jon Legend',
                       labelText: 'Full Name',
@@ -99,7 +106,10 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.lightGreen)),
                       border: OutlineInputBorder(borderSide: BorderSide()),
+
                     ),
+                    
+                    
                   ),
                   SizedBox(
                     height: 12.0,

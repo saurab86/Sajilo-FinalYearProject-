@@ -21,7 +21,6 @@ var img = [
   "assets/serviceimage/ac.png",
   "assets/serviceimage/car.png",
   "assets/serviceimage/paintingIcon.png",
-  "assets/serviceimage/car.png",
   "assets/serviceimage/tv.png",
   "assets/serviceimage/bike.png",
   "assets/serviceimage/haircut.png",

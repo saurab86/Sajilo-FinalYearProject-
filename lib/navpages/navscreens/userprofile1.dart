@@ -54,8 +54,9 @@ class _UserProfile1State extends State<UserProfile1> {
                           width: 180.0,
                           height: 180.0,
                           child:
-                          Image.network(userprofile['profilepic'],
-                          fit: BoxFit.fill,),
+                          Image.asset('assets/images/user.png',fit: BoxFit.fill,)
+                          // Image.network(userprofile['profilepic'],
+                          // fit: BoxFit.fill,),
                ) ),
               //  backgroundImage:
                

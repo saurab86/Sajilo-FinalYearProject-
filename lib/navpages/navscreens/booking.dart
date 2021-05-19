@@ -40,7 +40,7 @@ class _BookingState extends State<Booking> {
           color: Colors.lightBlue[100],
           margin: EdgeInsets.symmetric(vertical: 8.0),
           padding: EdgeInsets.all(8.0),
-          height: 180.0,
+          height: 250.0,
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -167,6 +167,24 @@ class _BookingState extends State<Booking> {
                     )
                   ],
                 ),
+                SizedBox(height:10),
+                 Row(
+                  children: [
+                   
+                    Text(
+                      'Problem Description :',
+                      style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                    ),
+                    SizedBox(width: 5),
+                    Expanded(
+                                          child: Text(
+                        bookinginfo['ProblemDescription'],
+                        style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height:12),
                 SafeArea(
                     child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -199,7 +217,7 @@ class _BookingState extends State<Booking> {
           color: Colors.lightBlue[100],
           margin: EdgeInsets.symmetric(vertical: 8.0),
           padding: EdgeInsets.all(8.0),
-          height: 180.0,
+          height: 250.0,
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -325,7 +343,26 @@ class _BookingState extends State<Booking> {
                       color: Colors.blueAccent,
                     )
                   ],
-                )),
+                ),
+                
+                ),
+                 Row(
+                  children: [
+                    Text(
+                      'Problem Description :',
+                      style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                    ),
+                    SizedBox(width: 5,),
+                  SizedBox(height:10),
+
+                    Expanded(
+                              child: Text(
+                        bookinginfo['ProblemDescription'],
+                        style: TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),

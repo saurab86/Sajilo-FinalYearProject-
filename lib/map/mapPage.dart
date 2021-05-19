@@ -10,17 +10,16 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sajilo/Helper/NetworkHelper.dart';
-import 'package:sajilo/bookingpages/ac_repairing.dart';
 import 'package:sajilo/bookingpages/bike_reparing.dart';
 import 'package:sajilo/bookingpages/car_servicing.dart';
+// ignore: unused_import
 import 'package:sajilo/bookingpages/electricity_servicing.dart';
 import 'package:sajilo/bookingpages/furniture.dart';
 import 'package:sajilo/bookingpages/haircut.dart';
 import 'package:sajilo/bookingpages/house_painting.dart';
-import 'package:sajilo/bookingpages/laptop_repair.dart';
-import 'package:sajilo/bookingpages/plumbing_service.dart';
 import 'package:sajilo/bookingpages/tv_repair.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
+import 'package:sajilo/widgets/spinkit2.dart';
 
 var services = [
   "House Painting",
@@ -33,9 +32,8 @@ var services = [
   "Haircut Service",
   "Furniture ",
   "Plumbing Service",
- // "test"
+  // "test"
 ];
-
 
 // ignore: must_be_immutable
 class Maps extends StatefulWidget {
@@ -63,7 +61,7 @@ class _MapsState extends State<Maps> {
 
   LatLng sourceLatLng;
   //LatLng destinationLatLng;
-   String sourceName = "";
+  String sourceName = "";
   //String destinationName = "";
   //TimeOfDay selectedTime;
 
@@ -86,9 +84,8 @@ class _MapsState extends State<Maps> {
     //phoneNumberFocus = FocusNode();
     //phoneController = TextEditingController();
     getJsonData();
-         sourceName = "";
-        _ref = FirebaseDatabase.instance.reference().child('AddressFromMap');
-
+    sourceName = "";
+    _ref = FirebaseDatabase.instance.reference().child('AddressFromMap');
   }
 
   @override
@@ -282,51 +279,109 @@ class _MapsState extends State<Maps> {
                                     });
                                   },
                                 )),
-                                SizedBox(height:15),
-                                ElevatedButton(onPressed: (){
-                               // Navigator.push(context, MaterialPageRoute(builder: (_)=>SecondPage(sourcename :sourceName)));
-                                  if(widget.routekey=="House Painting"){
-                                    Navigator.of(context).push(HousepantingAnimationPage());       
-                                  }     
-                                  else if(widget.routekey=="Laptop Reparing and Servicing"){
-                                    Navigator.of(context).push(LaptopServiceAnimationPage());
-                                  }  
-                                  else if(widget.routekey=="Electricty Reparing"){
-                                    Navigator.of(context).push(ElectricityAnimationPage());
-                                  } 
-                                   else if(widget.routekey=="Car Reparing and Servicing"){
-                                    Navigator.of(context).push(CarServiceAnimationPage());
-                                  } 
-                                  else if(widget.routekey=="Tv Reparing"){
-                                    Navigator.of(context).push(TvServiceAnimationPage());
-                                  } 
-                                  else if(widget.routekey=="Ac Reparing and Maintenence"){
-                                    Navigator.of(context).push(ACreparingAnimationPage());
-                                  } 
+                      SizedBox(height: 15),
+                      
+                      ElevatedButton(
+                          onPressed: () {
+                            // Navigator.push(context, MaterialPageRoute(builder: (_)=>SecondPage(sourcename :sourceName)));
+                            if (widget.routekey == "House Painting") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => HousePaintingBooking(
+                                              sourcename: sourceName,
+                                            )));
+                              }
+                            } else if (widget.routekey ==
+                                "Laptop Reparing and Servicing") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              } else {
+                                Navigator.push(context, MaterialPageRoute(builder: (_)=>Spinkit2(sourcename: sourceName,maproutekey: widget.routekey
+                                ,lat: sourceLatLng.latitude,long:sourceLatLng.longitude)));
+                              }
+                            } else if (widget.routekey ==
+                                "Electricty Reparing") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              } else {
+                                Navigator.push(context, MaterialPageRoute(builder: (_)=>Spinkit2(sourcename: sourceName,maproutekey: widget.routekey
+                                ,lat: sourceLatLng.latitude,long:sourceLatLng.longitude)));
+                              // Navigator.push(context, MaterialPageRoute(builder: (_)=>ElectricityBooking(sourcename: sourceName)));
+                              }
+                            } else if (widget.routekey ==
+                                "Car Reparing and Servicing") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              }
+                              Navigator.of(context)
+                                  .push(CarServiceAnimationPage());
+                            } else if (widget.routekey == "Tv Reparing") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              }
+                              Navigator.of(context)
+                                  .push(TvServiceAnimationPage());
+                            } else if (widget.routekey ==
+                                "Ac Reparing and Maintenence") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              }
+                              Navigator.push(context, MaterialPageRoute(builder: (_)=>Spinkit2(sourcename: sourceName,maproutekey: widget.routekey
+                                ,lat: sourceLatLng.latitude,long:sourceLatLng.longitude)));
+                            } else if (widget.routekey ==
+                                "Bike Reparing and Servicing") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              }
+                              Navigator.of(context)
+                                  .push(BikeserviceAnimationPage());
+                            } else if (widget.routekey == "Haircut Service") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              }
+                              Navigator.of(context)
+                                  .push(HairCutAnimationPage());
+                            } else if (widget.routekey == "Furniture") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              }
+                              Navigator.of(context)
+                                  .push(FurnitureServiceAnimationPage());
+                            } else if (widget.routekey == "Plumbing Service") {
+                              if (sourceName == null ||
+                                  sourceLatLng.latitude == null ||
+                                  sourceLatLng.longitude == null) {
+                                Navigator.of(context).pop();
+                              }
+                              Navigator.push(context, MaterialPageRoute(builder: (_)=>Spinkit2(sourcename: sourceName,maproutekey: widget.routekey
+                                ,lat: sourceLatLng.latitude,long:sourceLatLng.longitude)));
+                            }
+                          },
+                          child: Text("test button")),
+                      SizedBox(height: 100.0),
 
-                                  else if(widget.routekey=="Bike Reparing and Servicing"){
-                                    Navigator.of(context).push(BikeserviceAnimationPage());
-                                  } 
-                                  else if(widget.routekey=="Haircut Service"){
-                                    Navigator.of(context).push(HairCutAnimationPage());
-                                  }
-                                   else if(widget.routekey=="Furniture"){
-                                    Navigator.of(context).push(FurnitureServiceAnimationPage());
-                                  }
-                                   else if(widget.routekey=="Plumbing Service"){
-                                    Navigator.of(context).push(PlumbingAnimationPage());
-                                  }
-                                  
-
-
-
-                                  
-                                  
-
-                                }, child: Text("test button")),
-                          SizedBox(height: 100.0),
-
-                    
                       //  ElevatedButton(
                       //   style:ElevatedButton.styleFrom(primary:Colors.blueGrey),
                       //   //color: Colors.redAccent,
@@ -397,8 +452,6 @@ class _MapsState extends State<Maps> {
                               onPressed: () {
                                 bookRide();
                                 setAddress();
-                                
-                               
 
                                 // Navigator.pushReplacement(
                                 //     context,
@@ -406,8 +459,6 @@ class _MapsState extends State<Maps> {
                                 //         builder: (_) => NavHome()));
                               },
                             ),
-
-
                           ],
                         ),
                       )
@@ -483,30 +534,23 @@ class _MapsState extends State<Maps> {
     } catch (e) {
       print(e.toString());
     }
-
- 
   }
 
-
-     void setAddress() {
-
-  FirebaseAuth auth = FirebaseAuth.instance;
-  String sourceLat = sourceLatLng.latitude.toString();
-  String sourceLng = sourceLatLng.longitude.toString();
-  Map<String, String> addressfromMap = {
-    'Latitude': sourceLat,
-    'Longitude':sourceLng,
-    'sourceName': sourceName,
-    'user_id': auth.currentUser.uid ?? "",
-    'user_name': auth.currentUser.displayName ?? "",
-    'user_email': auth.currentUser.email ?? "",
-    'profile_img': auth.currentUser.photoURL ?? "",
-  };
-  _ref.push().update(addressfromMap);
-
-}
-
-
+  void setAddress() {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    String sourceLat = sourceLatLng.latitude.toString();
+    String sourceLng = sourceLatLng.longitude.toString();
+    Map<String, String> addressfromMap = {
+      'Latitude': sourceLat,
+      'Longitude': sourceLng,
+      'sourceName': sourceName,
+      'user_id': auth.currentUser.uid ?? "",
+      'user_name': auth.currentUser.displayName ?? "",
+      'user_email': auth.currentUser.email ?? "",
+      'profile_img': auth.currentUser.photoURL ?? "",
+    };
+    _ref.push().update(addressfromMap);
+  }
 
   String calculateDistance(lat1, lon1, lat2, lon2) {
     var p = 0.017453292519943295;
@@ -530,7 +574,6 @@ class LineString {
   List<dynamic> lineString;
 }
 
-
 // ignore: must_be_immutable
 class SecondPage extends StatefulWidget {
   String sourcename;
@@ -540,28 +583,35 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
-  
-
   @override
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
     return Scaffold(
       appBar: AppBar(
-        title:  Text("Test widget"),
+        title: Text("Test widget"),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-          Text("This is Test Page",style: TextStyle(fontSize: 20,fontFamily: 'Newsreader'),),
-          SizedBox(height: 18,),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "This is Test Page",
+            style: TextStyle(fontSize: 20, fontFamily: 'Newsreader'),
+          ),
+          SizedBox(
+            height: 18,
+          ),
           Text(widget.sourcename,
-          style: TextStyle(fontSize: 20,fontFamily: 'Newsreader')),
-          SizedBox(height: 10,),
-          Text( auth.currentUser.email,style: TextStyle(fontFamily: 'Newsreader',fontSize: 18),),
-        ],)
-      ),
-      
+              style: TextStyle(fontSize: 20, fontFamily: 'Newsreader')),
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            auth.currentUser.email,
+            style: TextStyle(fontFamily: 'Newsreader', fontSize: 18),
+          ),
+        ],
+      )),
     );
   }
 }

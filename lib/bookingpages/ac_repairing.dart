@@ -20,7 +20,10 @@ class ACreparingAnimationPage extends CupertinoPageRoute {
   }
 }
 
+// ignore: must_be_immutable
 class AcRepairService extends StatefulWidget {
+  String sourcename;
+  AcRepairService({this.sourcename});
   @override
   _AcRepairServiceState createState() => _AcRepairServiceState();
 }

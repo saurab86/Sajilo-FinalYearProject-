@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/navpages/navscreens/navhandling.dart';
@@ -21,26 +22,23 @@ class ElectricityAnimationPage extends CupertinoPageRoute {
   }
 }
 
+// ignore: must_be_immutable
 class ElectricityBooking extends StatefulWidget {
+  String sourcename;
+  ElectricityBooking({this.sourcename});
   @override
   _ElectricityBookingState createState() => _ElectricityBookingState();
 }
 
 class _ElectricityBookingState extends State<ElectricityBooking> {
   bool bookingstatus = true;
-  TextEditingController _nameController,
-      _mobilenumberController,
-      _addressController,
-      _wardController,
+  TextEditingController
       _descriptionController;
   DatabaseReference _ref;
   @override
   void initState() {
     super.initState();
-    _nameController = TextEditingController();
-    _mobilenumberController = TextEditingController();
-    _addressController = TextEditingController();
-    _wardController = TextEditingController();
+    //_addressController = TextEditingController();
     _descriptionController = TextEditingController();
     _ref = FirebaseDatabase.instance.reference().child('BookingInfo');
   }
@@ -48,10 +46,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
   @override
   void dispose() {
     super.dispose();
-    _nameController.dispose();
-    _mobilenumberController.dispose();
-    _wardController.dispose();
-    _addressController.dispose();
+  
     _descriptionController.dispose();
   }
 
@@ -62,7 +57,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
     DateTime now = new DateTime.now();
     Text('Time and Date: $now');
     return new Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Color(0xFFF3F7FB),
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
@@ -96,7 +91,9 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
           SliverFillRemaining(
               hasScrollBody: true,
               child: SingleChildScrollView(
-                child: Column(children: [
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
                   SizedBox(
                     height: 25.0,
                   ),
@@ -128,14 +125,31 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                   SizedBox(
                     height: 12.0,
                   ),
+
+                   Container(
+                      child: Column(children: [
+                         Text("Book Now",style: TextStyle(fontFamily: 'Newsreader',fontWeight: FontWeight.bold,fontSize: 20,
+                    decoration: TextDecoration.underline)),
+                    SizedBox(height: 12,),
+
+                    Text("Your current location:",style: TextStyle(fontFamily: 'Newsreader',fontSize: 18,fontWeight: FontWeight.bold),),
+                    SizedBox(height:5),
+                  Text(widget.sourcename,style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
+                  SizedBox(height:12),
+                      ],),
+                   ),
+                   
+                                    
+                  //Problem Description Textfeild
                   TextFormField(
                     controller: _descriptionController,
-                    cursorColor: Colors.white,
+                    cursorColor: Colors.black,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.account_circle),
                       hintText: 'Describe Your Problem',
-                      labelText: 'Description',
-                      labelStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(fontFamily: 'Newsreader'),
+                      labelText: 'Problem Description',
+                      labelStyle: TextStyle(color: Colors.black,fontFamily: 'Newsreader',fontSize: 18),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green),
                           borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -148,104 +162,36 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                   ),
 
                   //Full Name
-                  TextFormField(
-                    controller: _nameController,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.account_circle),
-                      hintText: 'Example:Jon Legend',
-                      labelText: 'Full Name',
-                      labelStyle: TextStyle(color: Colors.white),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.green),
-                          borderRadius: BorderRadius.all(Radius.circular(30))),
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12.0,
-                  ),
+                  
+                  
 
                   //Address
-                  TextFormField(
-                    controller: _addressController,
-                    keyboardType: TextInputType.streetAddress,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.add_location),
-                      hintText: 'Example: Bhairahawa,Rupandehi',
-                      labelText: 'Enter Address',
-                      labelStyle: TextStyle(color: Colors.white),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                    ),
-                  ),
+                 
                   SizedBox(
                     height: 12.0,
                   ),
 
                   //Ward No.
-                  TextFormField(
-                    controller: _wardController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.blur_linear),
-                      hintText: 'Example: Ward-10',
-                      labelText: 'Enter Ward Number',
-                      labelStyle: TextStyle(color: Colors.white),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                    ),
-                  ),
+                  
 
-                  SizedBox(
-                    height: 12.0,
-                  ),
+                 
 //
 
-                  TextFormField(
-                    controller: _mobilenumberController,
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(LineAwesomeIcons.mobile_phone),
-                      hintText: 'Example: 98********',
-                      labelText: 'Enter Mobile Number',
-                      labelStyle: TextStyle(color: Colors.white),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                    ),
-                  ),
+                  
 
-                  SizedBox(height: 12.0),
 
-                  Text(
-                    "Give your location access",
-                    style: TextStyle(fontFamily: 'Rubik', fontSize: 16.0),
-                  ),
+                 
 
-                  //Location Button
-                  IconButton(
-                      icon: Icon(
-                        Icons.my_location,
-                        color: Colors.indigo,
-                        size: 30.0,
-                      ),
-                      onPressed: () {}),
-
-                  SizedBox(
-                    height: 15.0,
-                  ),
+                 
 
                   //Book Button
                   ElevatedButton(
                     // color: Colors.redAccent,
                     onPressed: () {
-                      if (_nameController.text.isEmpty ||
-                          _addressController.text.isEmpty ||
-                          _wardController.text.isEmpty ||
-                          _mobilenumberController.text.isEmpty) {
+                      if (
+                          _descriptionController.text.isEmpty
+                          
+                          ) {
                         showDialog(
                             context: context,
                             builder: (_) => AlertDialog(
@@ -280,7 +226,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     child: Text(
                       'Book Service',
                       style:
-                          TextStyle(fontFamily: 'Rubik', color: Colors.white),
+                          TextStyle(fontFamily: 'Newsreader', color: Colors.white,fontSize: 18),
                     ),
                   )
                 ]),
@@ -291,11 +237,12 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
   }
 
   void saveBooking(String a, String userID, now) {
-    String name = _nameController.text;
-    String address = _addressController.text;
-    String ward = _wardController.text;
-    String mobilenumber = _mobilenumberController.text;
+   // String name = _nameController.text;
+    String address = widget.sourcename;
+  ///  String ward = _wardController.text;
+   // String mobilenumber = _mobilenumberController.text;
     String service = "electrical Reparing";
+    String problem = _descriptionController.text;
     String emailid = a;
     String x;
     String y = now.toString();
@@ -306,10 +253,11 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
     }
 
     Map<String, String> bookinginfo = {
-      'name': name,
+      //'name': name,
       'address': address,
-      'ward': ward,
-      'mobilenumber': mobilenumber,
+      //'ward': ward,
+      //'mobilenumber': mobilenumber,
+      'Problem Description': problem,
       'service': service,
       'email': emailid,
       'UserID': userID,

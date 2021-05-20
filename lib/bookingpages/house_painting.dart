@@ -261,6 +261,7 @@ class _HousePaintingBookingState extends State<HousePaintingBooking> {
     String emailid = a;
     String bookingstatus = 'Pending';
     String y = now.toString();
+    String servicestatus = "InProgress";
     Map<String, String> bookinginfo = {
       'name': name,
       'address': address,
@@ -271,6 +272,7 @@ class _HousePaintingBookingState extends State<HousePaintingBooking> {
       'UserID': userID,
       'BookingStatus': bookingstatus,
       'BookedTimeAndDate':y,
+      'serviceStatus': servicestatus,
     };
     _ref.push().set(bookinginfo);
     showDialog(

@@ -116,8 +116,7 @@ class _MapsState extends State<Maps> {
     NetworkHelper network = NetworkHelper(
       startLat: sourceLatLng.latitude,
       startLng: sourceLatLng.longitude,
-      // endLat: destinationLatLng.latitude,
-      // endLng: destinationLatLng.longitude,
+      
     );
 
     try {
@@ -228,10 +227,7 @@ class _MapsState extends State<Maps> {
                         "NAMASTE",
                         style: TextStyle(color: Colors.black, fontSize: 14.0,fontFamily: 'Newsreader'),
                       ),
-                      // Text(
-                      //   "Select Your Location.",
-                      //   style: TextStyle(color: Colors.black, fontSize: 16.0),
-                      // ),
+                      
                       TextButton.icon(
                         onPressed: () {
                           setupPositionLocator();
@@ -282,52 +278,6 @@ class _MapsState extends State<Maps> {
                                   },
                                 )),
                       SizedBox(height: 100.0),
-
-                      //  ElevatedButton(
-                      //   style:ElevatedButton.styleFrom(primary:Colors.blueGrey),
-                      //   //color: Colors.redAccent,
-                      //   onPressed: () {
-                      //     if (sourceName.isEmpty) {
-                      //       showDialog(
-                      //           context: context,
-                      //           builder: (_) => AlertDialog(
-                      //                 shape: RoundedRectangleBorder(
-                      //                     borderRadius:
-                      //                         BorderRadius.circular(14.0)),
-                      //                 backgroundColor: Colors.blueGrey[200],
-                      //                 title: new Text(
-                      //                   "Error",
-                      //                   textAlign: TextAlign.center,
-                      //                 ),
-                      //                 content: new Text(
-                      //                   "Please fill up your Address",
-                      //                   textAlign: TextAlign.center,
-                      //                   style: TextStyle(fontSize: 16.0),
-                      //                 ),
-                      //                 actions: <Widget>[
-                      //                   TextButton(
-                      //                       onPressed: () {
-                      //                         Navigator.pop(context);
-                      //                       },
-                      //                       child: Text(
-                      //                         'OK',
-                      //                         style: TextStyle(fontSize: 16.0),
-                      //                       ))
-                      //                 ],
-                      //               ));
-                      //     } else {
-                      //       bookRide();
-                      //     }
-                      //   },
-                      //   child: Text(
-                      //     'Next',
-                      //     style: TextStyle(
-                      //         fontFamily: 'Rubik',
-                      //         color: Colors.white,
-                      //         fontWeight: FontWeight.bold,
-                      //         fontSize: 20.0),
-                      //   ),
-                      // )
                       Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -448,16 +398,8 @@ class _MapsState extends State<Maps> {
                                 ,lat: sourceLatLng.latitude,long:sourceLatLng.longitude)));
                             }
 
-
-
-
                                 bookRide();
                                 setAddress();
-
-                                // Navigator.pushReplacement(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (_) => NavHome()));
                               },
                             ),
                           ],

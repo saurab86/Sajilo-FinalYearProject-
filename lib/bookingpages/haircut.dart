@@ -245,6 +245,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
     String emailid = a;
     String bookingstatus = 'Pending';
     String y = now.toString();
+    String servicestatus = "InProgress";
     Map<String, String> bookinginfo = {
       'name': name,
       'address': address,
@@ -255,6 +256,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
       'UserID': userID,
       'BookingStatus': bookingstatus,
       'BookedTimeAndDate':y,
+      'serviceStatus': servicestatus,
     };
     _ref.push().set(bookinginfo);
     showDialog(

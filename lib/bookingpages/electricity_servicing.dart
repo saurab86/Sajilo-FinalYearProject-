@@ -329,6 +329,7 @@ Widget buildUserProfile({Map userprofile}){
     } else {
       x = "Accepted";
     }
+    String servicestatus = "InProgress";
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -341,6 +342,7 @@ Widget buildUserProfile({Map userprofile}){
       'UserID': userID,
       'BookingStatus': x,
       'BookedTimeAndDate': y,
+      'serviceStatus': servicestatus,
     };
     _ref.push().set(bookinginfo);
 

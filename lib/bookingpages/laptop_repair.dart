@@ -274,6 +274,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     } else {
       x = "Accepted";
     }
+    String servicestatus = "InProgress";
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -286,6 +287,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
       'UserID': userID,
       'BookingStatus': x,
       'BookedTimeAndDate': y,
+      'serviceStatus': servicestatus,
     };
     _ref.push().set(bookinginfo);
 

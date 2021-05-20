@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 import 'package:provider/provider.dart';
-//import 'package:sajilo/navpages/navscreens/navhandling.dart';
+import 'package:sajilo/screens/signup/signup1.dart';
 import 'package:sajilo/widgets/custom_password_feild.dart';
 import 'package:sajilo/widgets/spinkit.dart';
 //import 'package:sajilo/widgets/spinkit.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth.dart';
 import '../../widgets/question_row.dart';
-//import '../home/home.dart';
-import '../signup/signup.dart';
 // import '../../widgets/custom_text_field.dart';
 import '../../widgets/sign_button.dart';
 
@@ -105,7 +103,7 @@ class Login extends StatelessWidget {
               QuestionRow(
                 question: "Don't have an account?",
                 functionText: 'Create now',
-                widget: SignUp(),
+                widget: Signup1(),
               ),
             ],
           ),

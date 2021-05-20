@@ -346,6 +346,7 @@ class _BookingState extends State<Booking> {
                 ),
                 
                 ),
+                SizedBox(height:12),
                  Row(
                   children: [
                     Text(

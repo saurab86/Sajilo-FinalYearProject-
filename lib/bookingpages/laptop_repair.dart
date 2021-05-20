@@ -34,7 +34,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
   TextEditingController _nameController,
       _mobilenumberController,
       _addressController,
-      _wardController,
+     
       _descriptionController;
   DatabaseReference _ref;
   @override
@@ -43,7 +43,6 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     _nameController = TextEditingController();
     _mobilenumberController = TextEditingController();
     _addressController = TextEditingController();
-    _wardController = TextEditingController();
     _descriptionController = TextEditingController();
     _ref = FirebaseDatabase.instance.reference().child('BookingInfo');
   }
@@ -53,7 +52,6 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     super.dispose();
     _nameController.dispose();
     _mobilenumberController.dispose();
-    _wardController.dispose();
     _addressController.dispose();
     _descriptionController.dispose();
   }
@@ -264,7 +262,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     String address = widget.sourcename;
     //String ward = _wardController.text;
     String mobilenumber = _mobilenumberController.text;
-    String service = "electrical Reparing";
+    String service = "Laptop Reparing & Servicing";
     String problem = _descriptionController.text;
     String emailid = a;
     String x;

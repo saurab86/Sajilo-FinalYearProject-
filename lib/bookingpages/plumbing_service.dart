@@ -265,7 +265,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
     String address = widget.sourcename;
     //String ward = _wardController.text;
     String mobilenumber = _mobilenumberController.text;
-    String service = "electrical Reparing";
+    String service = "Plumbing Service";
     String problem = _descriptionController.text;
     String emailid = a;
     String x;

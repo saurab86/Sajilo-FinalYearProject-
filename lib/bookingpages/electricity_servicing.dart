@@ -319,7 +319,7 @@ Widget buildUserProfile({Map userprofile}){
     String address = widget.sourcename;
   ///  String ward = _wardController.text;
     String mobilenumber = _mobilenumberController.text;
-    String service = "electrical Reparing";
+    String service = "Electrical Reparing";
     String problem = _descriptionController.text;
     String emailid = a;
     String x;

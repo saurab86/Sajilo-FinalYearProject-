@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
 class CustomTextField1 extends StatefulWidget {
-  CustomTextField1({this.keyboardType, this.hintText, this.onChanged});
+  CustomTextField1({this.keyboardType, this.hintText, this.onChanged,this.validator});
   final TextInputType keyboardType;
   final String hintText;
   final Function onChanged;
+  final Function validator;
 
   @override
   _CustomTextField1State createState() => _CustomTextField1State();
@@ -24,6 +25,7 @@ class _CustomTextField1State extends State<CustomTextField1> {
       //shape: const StadiumBorder(),
       shadowColor: Color(0xFFFB6158).withOpacity(0.2),
       child: TextFormField(
+        validator: widget.validator,
         obscureText: _obscureText,
         controller: passwordController,
         keyboardType: widget.keyboardType,

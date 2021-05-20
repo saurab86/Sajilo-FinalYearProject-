@@ -140,11 +140,25 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     decoration: TextDecoration.underline)),
                     SizedBox(height: 12,),
 
-                    Text("Your current location:",style: TextStyle(fontFamily: 'Newsreader',fontSize: 18,fontWeight: FontWeight.bold),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                         children:[ 
+                           Text("Your current location:",style: TextStyle(fontFamily: 'Newsreader',fontSize: 18,fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width:5),
+                      Icon(Icons.location_on)
+                      ]
+                    ),
                     SizedBox(height:5),
                   Text(widget.sourcename,style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
                   SizedBox(height:12),
-                    Text(data.userInfo,style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
+
+                    Row(children:[ 
+                      Text("Your email:",style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
+                      SizedBox(width:8),
+                      Text(data.userInfo,style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
+                    
+                    ]),
                       ],),
                    ),
                    SizedBox(height: 12,),
@@ -167,7 +181,8 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                   ),
 
                   SizedBox(height: 12,),
-
+                  
+                  //moblile number textformfeild
                   TextFormField(
                     controller: _mobilenumberController,
                     keyboardType: TextInputType.phone,
@@ -187,6 +202,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                      SizedBox(height: 12,),               
                   //Problem Description Textfeild
                   TextFormField(
+                    keyboardType: TextInputType.text,
                     controller: _descriptionController,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(

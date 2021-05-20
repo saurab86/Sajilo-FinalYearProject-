@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -12,8 +13,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sajilo/Helper/NetworkHelper.dart';
 import 'package:sajilo/bookingpages/bike_reparing.dart';
 import 'package:sajilo/bookingpages/car_servicing.dart';
-// ignore: unused_import
-import 'package:sajilo/bookingpages/electricity_servicing.dart';
 import 'package:sajilo/bookingpages/furniture.dart';
 import 'package:sajilo/bookingpages/haircut.dart';
 import 'package:sajilo/bookingpages/house_painting.dart';
@@ -238,7 +237,7 @@ class _MapsState extends State<Maps> {
                           setupPositionLocator();
                         },
                         icon: Icon(Icons.location_on),
-                        label: Text('Select Your Location'),
+                        label: Text('Select Your Location',style: TextStyle(fontFamily: 'Newsreader',fontSize: 16),),
                       ),
                       ListTile(
                           leading: Icon(Icons.location_on, color: Colors.grey),
@@ -246,6 +245,7 @@ class _MapsState extends State<Maps> {
                             'Your Current Location',
                             style: TextStyle(
                               color: Colors.black,
+                              fontFamily: 'Newsreader',fontSize: 16
                             ),
                           ),
                           subtitle: Text(
@@ -254,6 +254,8 @@ class _MapsState extends State<Maps> {
                                 : sourceName,
                             style: TextStyle(
                               color: Colors.grey,
+                              fontFamily: 'Newsreader',
+                              fontSize: 14,
                             ),
                           ),
                           trailing: sourceLatLng == null
@@ -279,12 +281,79 @@ class _MapsState extends State<Maps> {
                                     });
                                   },
                                 )),
-                      SizedBox(height: 15),
-                      
-                      ElevatedButton(
-                          onPressed: () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (_)=>SecondPage(sourcename :sourceName)));
-                            if (widget.routekey == "House Painting") {
+                      SizedBox(height: 100.0),
+
+                      //  ElevatedButton(
+                      //   style:ElevatedButton.styleFrom(primary:Colors.blueGrey),
+                      //   //color: Colors.redAccent,
+                      //   onPressed: () {
+                      //     if (sourceName.isEmpty) {
+                      //       showDialog(
+                      //           context: context,
+                      //           builder: (_) => AlertDialog(
+                      //                 shape: RoundedRectangleBorder(
+                      //                     borderRadius:
+                      //                         BorderRadius.circular(14.0)),
+                      //                 backgroundColor: Colors.blueGrey[200],
+                      //                 title: new Text(
+                      //                   "Error",
+                      //                   textAlign: TextAlign.center,
+                      //                 ),
+                      //                 content: new Text(
+                      //                   "Please fill up your Address",
+                      //                   textAlign: TextAlign.center,
+                      //                   style: TextStyle(fontSize: 16.0),
+                      //                 ),
+                      //                 actions: <Widget>[
+                      //                   TextButton(
+                      //                       onPressed: () {
+                      //                         Navigator.pop(context);
+                      //                       },
+                      //                       child: Text(
+                      //                         'OK',
+                      //                         style: TextStyle(fontSize: 16.0),
+                      //                       ))
+                      //                 ],
+                      //               ));
+                      //     } else {
+                      //       bookRide();
+                      //     }
+                      //   },
+                      //   child: Text(
+                      //     'Next',
+                      //     style: TextStyle(
+                      //         fontFamily: 'Rubik',
+                      //         color: Colors.white,
+                      //         fontWeight: FontWeight.bold,
+                      //         fontSize: 20.0),
+                      //   ),
+                      // )
+                      Container(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.blueGrey),
+                              child: Text('Back',style: TextStyle(fontFamily: 'Newsreader',fontSize: 16),),
+                              onPressed: () {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => NavHome()));
+                              },
+                            ),
+                            SizedBox(
+                              width: 80,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.blueGrey),
+                              child: Text('Next',style: TextStyle(fontFamily: 'Newsreader',fontSize: 16),),
+                              onPressed: () {
+                                
+
+                                  if (widget.routekey == "House Painting") {
                               if (sourceName == null ||
                                   sourceLatLng.latitude == null ||
                                   sourceLatLng.longitude == null) {
@@ -378,78 +447,10 @@ class _MapsState extends State<Maps> {
                               Navigator.push(context, MaterialPageRoute(builder: (_)=>Spinkit2(sourcename: sourceName,maproutekey: widget.routekey
                                 ,lat: sourceLatLng.latitude,long:sourceLatLng.longitude)));
                             }
-                          },
-                          child: Text("test button")),
-                      SizedBox(height: 100.0),
 
-                      //  ElevatedButton(
-                      //   style:ElevatedButton.styleFrom(primary:Colors.blueGrey),
-                      //   //color: Colors.redAccent,
-                      //   onPressed: () {
-                      //     if (sourceName.isEmpty) {
-                      //       showDialog(
-                      //           context: context,
-                      //           builder: (_) => AlertDialog(
-                      //                 shape: RoundedRectangleBorder(
-                      //                     borderRadius:
-                      //                         BorderRadius.circular(14.0)),
-                      //                 backgroundColor: Colors.blueGrey[200],
-                      //                 title: new Text(
-                      //                   "Error",
-                      //                   textAlign: TextAlign.center,
-                      //                 ),
-                      //                 content: new Text(
-                      //                   "Please fill up your Address",
-                      //                   textAlign: TextAlign.center,
-                      //                   style: TextStyle(fontSize: 16.0),
-                      //                 ),
-                      //                 actions: <Widget>[
-                      //                   TextButton(
-                      //                       onPressed: () {
-                      //                         Navigator.pop(context);
-                      //                       },
-                      //                       child: Text(
-                      //                         'OK',
-                      //                         style: TextStyle(fontSize: 16.0),
-                      //                       ))
-                      //                 ],
-                      //               ));
-                      //     } else {
-                      //       bookRide();
-                      //     }
-                      //   },
-                      //   child: Text(
-                      //     'Next',
-                      //     style: TextStyle(
-                      //         fontFamily: 'Rubik',
-                      //         color: Colors.white,
-                      //         fontWeight: FontWeight.bold,
-                      //         fontSize: 20.0),
-                      //   ),
-                      // )
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueGrey),
-                              child: Text('Back'),
-                              onPressed: () {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (_) => NavHome()));
-                              },
-                            ),
-                            SizedBox(
-                              width: 80,
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: Colors.blueGrey),
-                              child: Text('Next'),
-                              onPressed: () {
+
+
+
                                 bookRide();
                                 setAddress();
 

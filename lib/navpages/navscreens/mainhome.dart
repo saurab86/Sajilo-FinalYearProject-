@@ -64,7 +64,7 @@ class _MainHomeState extends State<MainHome> {
                 borderRadius: BorderRadius.circular(25.0),
               ),
               elevation: 5,
-              margin: EdgeInsets.all(10),
+              margin: EdgeInsets.all(12),
               child: InkWell(
                 splashColor: Colors.green.withAlpha(30),
                 onTap: () {
@@ -120,12 +120,13 @@ class _MainHomeState extends State<MainHome> {
                         fit: BoxFit.fitHeight,
                       ),
                     ),
+                    SizedBox(height: 8,),
                     Container(
                       child: Text(
                         services[index],
                         style: TextStyle(
-                          fontFamily: 'Rubik',
-                          fontSize: 15,
+                          fontFamily: 'Newsreader',
+                          fontSize: 17,
                           fontWeight: FontWeight.w400,
                         ),
                         textAlign: TextAlign.center,

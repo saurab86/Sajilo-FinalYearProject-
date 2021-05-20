@@ -59,7 +59,7 @@ class _ContactPageState extends State<Info> {
               children: <Widget>[
                 Text(
                   "For any help:",
-                  style: TextStyle(fontFamily: 'Rubik', fontSize: 18.0),
+                  style: TextStyle(fontFamily: 'Newsreader', fontSize: 19.0),
                 ),
 
                 SizedBox(
@@ -83,8 +83,8 @@ class _ContactPageState extends State<Info> {
                           child: new Text(
                             "Call Now",
                             style: TextStyle(
-                              fontSize: 16.0,
-                              fontFamily: 'Rubik',
+                              fontSize: 18.0,
+                              fontFamily: 'Newsreader',
                             ),
                           )),
                     ],
@@ -135,7 +135,7 @@ class _ContactPageState extends State<Info> {
                           child: new Text(
                             "Email:helpsajilo@gmail.com",
                             style:
-                                TextStyle(fontSize: 16.0, fontFamily: 'Rubik'),
+                                TextStyle(fontSize: 18.0, fontFamily: 'Newsreader'),
                           ))
                     ],
                   ),

@@ -6,7 +6,6 @@ import 'package:sajilo/navpages/navscreens/mainhome.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:sajilo/navpages/navscreens/userprofile1.dart';
-import 'package:sajilo/navpages/search.dart';
 
 class NavHome extends StatefulWidget {
   @override
@@ -15,7 +14,7 @@ class NavHome extends StatefulWidget {
 
 class _NavHomeState extends State<NavHome> {
   var _page = 0;
-  final pages = [MainHome(), Booking(), Info(), UserProfile1(),Search()];
+  final pages = [MainHome(), Booking(), Info(), UserProfile1()];
 
   Future<bool> _onBackPressed() {
     return showDialog(
@@ -77,7 +76,7 @@ class _NavHomeState extends State<NavHome> {
             Icon(Icons.book, size: 30),
             Icon(Icons.info_outline, size: 30),
             Icon(Icons.perm_identity, size: 30),
-            Icon(Icons.search,size:30)
+            //Icon(Icons.search,size:30)
           ],
           height: 53.0,
           animationDuration: Duration(milliseconds: 500),

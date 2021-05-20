@@ -146,7 +146,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                            Text("Your current location:",style: TextStyle(fontFamily: 'Newsreader',fontSize: 18,fontWeight: FontWeight.bold),
                       ),
                       SizedBox(width:5),
-                      Icon(Icons.location_on)
+                      Icon(Icons.location_on,color: Colors.blue,)
                       ]
                     ),
                     SizedBox(height:5),
@@ -168,7 +168,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     keyboardType: TextInputType.text,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.account_circle),
+                      prefixIcon: Icon(Icons.account_circle,color: Colors.blueGrey,),
                       hintText: 'Example:Jon Legend',
                       hintStyle: TextStyle(fontFamily: 'Newsreader',color: Colors.black),
                       labelText: 'Full Name',
@@ -188,11 +188,11 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     keyboardType: TextInputType.phone,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.phone),
+                      prefixIcon: Icon(Icons.phone,color: Colors.green,),
                       hintText: 'Example:+97798*******',
                       hintStyle: TextStyle(fontFamily: 'Newsreader',color: Colors.black),
                       labelText: 'Mobile Number',
-                      labelStyle: TextStyle(color: Colors.black),
+                      labelStyle: TextStyle(color: Colors.black,fontFamily: 'Newsreader'),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green),
                           borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -206,7 +206,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     controller: _descriptionController,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.account_circle),
+                      prefixIcon: Icon(Icons.live_help),
                       hintText: 'Describe Your Problem',
                       hintStyle: TextStyle(fontFamily: 'Newsreader'),
                       labelText: 'Problem Description',
@@ -241,6 +241,9 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
 
                   //Book Button
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green
+                    ),
                     // color: Colors.redAccent,
                     onPressed: () {
                       if (

@@ -226,7 +226,7 @@ class _MapsState extends State<Maps> {
                       SizedBox(height: 6.0),
                       Text(
                         "NAMASTE",
-                        style: TextStyle(color: Colors.black, fontSize: 12.0),
+                        style: TextStyle(color: Colors.black, fontSize: 14.0,fontFamily: 'Newsreader'),
                       ),
                       // Text(
                       //   "Select Your Location.",

@@ -65,7 +65,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     DateTime now = new DateTime.now();
     Text('Time and Date: $now');
     return new Scaffold(
-      backgroundColor: Colors.teal,
+      backgroundColor: Color(0xFFF3F7FB),
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
@@ -113,14 +113,85 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                     height: scale.getFullScreen(25),
                   ),
 
+                  Container(
+                      child: Column(children: [
+                         Text("Book Now",style: TextStyle(fontFamily: 'Newsreader',fontWeight: FontWeight.bold,fontSize: 20,
+                    decoration: TextDecoration.underline)),
+                    SizedBox(height: 12,),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                         children:[ 
+                           Text("Your current location:",style: TextStyle(fontFamily: 'Newsreader',fontSize: 18,fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width:5),
+                      Icon(Icons.location_on,color: Colors.blue,)
+                      ]
+                    ),
+                    SizedBox(height:5),
+                  Text(widget.sourcename,style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
+                  SizedBox(height:12),
+
+                    Row(children:[ 
+                      Text("Your email:",style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
+                      SizedBox(width:8),
+                      Text(data.userInfo,style: TextStyle(fontFamily: 'Newsreader',fontSize: 17),),
+                    
+                    ]),
+                      ],),
+                   ),
+                   SizedBox(height: 12,),
+
+
+
+                  //Full Name
                   TextFormField(
-                    controller: _descriptionController,
+                    controller: _nameController,
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.account_circle),
+                      prefixIcon: Icon(Icons.account_circle,color: Colors.blueGrey,),
+                      hintText: 'Example:Jon Legend',
+                      hintStyle: TextStyle(fontFamily: 'Newsreader'),
+                      labelText: 'Full Name',
+                      labelStyle: TextStyle(color: Colors.black,fontFamily: 'Newsreader',fontSize: 18),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                    
+                    ////////Mobile Number
+                  TextFormField(
+                    controller: _mobilenumberController,
+                    keyboardType: TextInputType.phone,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(LineAwesomeIcons.phone,color: Colors.green,),
+                      hintText: 'Example: 98********',
+                       hintStyle: TextStyle(fontFamily: 'Newsreader'),
+                      labelText: 'Enter Mobile Number',
+                      labelStyle: TextStyle(color: Colors.black,fontFamily: 'Newsreader',fontSize: 18),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.lightGreen)),
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                  ),
+                  SizedBox(height: 12,),
+
+                   //Problem Description Textfeild
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                    controller: _descriptionController,
+                    cursorColor: Colors.black,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.live_help),
                       hintText: 'Describe Your Problem',
-                      labelText: 'Description',
-                      labelStyle: TextStyle(color: Colors.white),
+                      hintStyle: TextStyle(fontFamily: 'Newsreader'),
+                      labelText: 'Problem Description',
+                      labelStyle: TextStyle(color: Colors.black,fontFamily: 'Newsreader',fontSize: 18),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.green),
                           borderRadius: BorderRadius.all(Radius.circular(30))),
@@ -128,96 +199,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                     ),
                     maxLines: 3,
                   ),
-                  SizedBox(
-                    height: 12.0,
-                  ),
 
-                  //Full Name
-                  TextFormField(
-                    controller: _nameController,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.account_circle),
-                      hintText: 'Example:Jon Legend',
-                      labelText: 'Full Name',
-                      labelStyle: TextStyle(color: Colors.white),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.green),
-                          borderRadius: BorderRadius.all(Radius.circular(30))),
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-
-                  //Address
-                  TextFormField(
-                    controller: _addressController,
-                    keyboardType: TextInputType.streetAddress,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.add_location),
-                      hintText: 'Example: Bhairahawa,Rupandehi',
-                      labelText: 'Enter Address',
-                      labelStyle: TextStyle(color: Colors.white),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12.0,
-                  ),
-
-                  //Ward No.
-                  TextFormField(
-                    controller: _wardController,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.blur_linear),
-                      hintText: 'Example: Ward-10',
-                      labelText: 'Enter Ward Number',
-                      labelStyle: TextStyle(color: Colors.white),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 12.0,
-                  ),
-//
-
-                  TextFormField(
-                    controller: _mobilenumberController,
-                    keyboardType: TextInputType.phone,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(LineAwesomeIcons.mobile_phone),
-                      hintText: 'Example: 98********',
-                      labelText: 'Enter Mobile Number',
-                      labelStyle: TextStyle(color: Colors.white),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.lightGreen)),
-                      border: OutlineInputBorder(borderSide: BorderSide()),
-                    ),
-                  ),
-
-                  SizedBox(height: 12.0),
-
-                  Text(
-                    "Give your location access",
-                    style: TextStyle(fontFamily: 'Rubik', fontSize: 16.0),
-                  ),
-
-                  //Location Button
-                  IconButton(
-                      icon: Icon(
-                        Icons.my_location,
-                        color: Colors.indigo,
-                        size: 30.0,
-                      ),
-                      onPressed: () {}),
 
                   SizedBox(
                     height: 15.0,
@@ -228,8 +210,7 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                     // color: Colors.redAccent,
                     onPressed: () {
                       if (_nameController.text.isEmpty ||
-                          _addressController.text.isEmpty ||
-                          _wardController.text.isEmpty ||
+                         _descriptionController.text.isEmpty||
                           _mobilenumberController.text.isEmpty) {
                         showDialog(
                             context: context,
@@ -265,7 +246,10 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
                     child: Text(
                       'Book Service',
                       style:
-                          TextStyle(fontFamily: 'Rubik', color: Colors.white),
+                          TextStyle(fontFamily: 'Newsreader', color: Colors.white,fontSize: 16),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green
                     ),
                   )
                 ]),
@@ -277,10 +261,11 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
 
   void saveBooking(String a, String userID, now) {
     String name = _nameController.text;
-    String address = _addressController.text;
-    String ward = _wardController.text;
+    String address = widget.sourcename;
+    //String ward = _wardController.text;
     String mobilenumber = _mobilenumberController.text;
-    String service = "Laptop Reparing";
+    String service = "electrical Reparing";
+    String problem = _descriptionController.text;
     String emailid = a;
     String x;
     String y = now.toString();
@@ -293,8 +278,9 @@ class _LaptopRepBookingState extends State<LaptopRepBooking> {
     Map<String, String> bookinginfo = {
       'name': name,
       'address': address,
-      'ward': ward,
+     // 'ward': ward,
       'mobilenumber': mobilenumber,
+      'ProblemDescription': problem,
       'service': service,
       'email': emailid,
       'UserID': userID,

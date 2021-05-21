@@ -35,7 +35,7 @@ class _BookingState extends State<Booking> {
           color: Colors.lightBlue[100],
           margin: EdgeInsets.symmetric(vertical: 8.0),
           padding: EdgeInsets.all(8.0),
-          height: 250.0,
+          height: 280.0,
           child: SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

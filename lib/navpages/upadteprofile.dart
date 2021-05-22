@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/navpages/navscreens/userprofile1.dart';
 import 'package:sajilo/services/auth.dart';
 
@@ -216,7 +215,7 @@ void initState(){
     };
     
      //_ref.child("UserProfile").update({'Name':name,'Address':address,'Ward':ward,'MobileNumber':mobilenumber,'UserID':userID});
-     _ref.child(widget.profileKey).update(userprofile).then((value) => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavHome())));
+     _ref.child(widget.profileKey).update(userprofile).then((value) => 
 
       showDialog(
         barrierDismissible: false,
@@ -255,7 +254,7 @@ void initState(){
                       style: TextStyle(fontSize: 16.0),
                     ))
               ],
-            ));
+            )));
   }
 }
 

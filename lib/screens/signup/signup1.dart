@@ -222,7 +222,7 @@ class _Signup1State extends State<Signup1> {
                   obscureText: _obscureText,
                 controller: _passwordController,
                 decoration: InputDecoration(
-                hintText: 'Enter your password',
+                hintText: 'Enter password',
                 prefixIcon: Icon(Icons.vpn_key_outlined),
                  suffixIcon: IconButton(
                 icon: Icon(

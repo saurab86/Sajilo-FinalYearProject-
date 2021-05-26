@@ -6,7 +6,9 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:sajilo/screens/login/login.dart';
 import 'package:sajilo/services/auth.dart';
+// ignore: unused_import
 import 'package:sajilo/widgets/custom_password_feild.dart';
+// ignore: unused_import
 import 'package:sajilo/widgets/custom_text_field.dart';
 import 'package:sajilo/widgets/question_row.dart';
 import 'package:sajilo/widgets/sign_button.dart';
@@ -18,7 +20,8 @@ class Signup1 extends StatefulWidget {
 
 class _Signup1State extends State<Signup1> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
-  TextEditingController _nameController,
+    bool _obscureText = true;
+  TextEditingController _nameController,_emailController,_passwordController,
       _addressController,
       _wardController,
       _mobileNumberController;
@@ -30,8 +33,9 @@ class _Signup1State extends State<Signup1> {
     _addressController = TextEditingController();
     _wardController = TextEditingController();
     _mobileNumberController = TextEditingController();
-   // _emailController = TextEditingController();
-    // _passwordController = TextEditingController();
+
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
     _ref = FirebaseDatabase.instance.reference().child('UserProfile');
   }
 
@@ -43,6 +47,7 @@ class _Signup1State extends State<Signup1> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
           key: _formkey,
               child: SingleChildScrollView(
           child: Padding(
@@ -64,7 +69,7 @@ class _Signup1State extends State<Signup1> {
                   decoration: InputDecoration(
                     hintText: 'Enter Full Name',
                     prefixIcon: Icon(LineAwesomeIcons.user_1),
-                    focusedBorder: OutlineInputBorder(
+                    border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.green),
                         borderRadius: BorderRadius.all(Radius.circular(40))),
                            ),
@@ -72,7 +77,10 @@ class _Signup1State extends State<Signup1> {
                   style: TextStyle(fontFamily: 'SFProText',fontSize: 18),
                   validator: (String value) {
                     if (value.isEmpty) {
-                      return "Please enter name";
+                      return "Please enter Name";
+                    }
+                     if(value.length>20){
+                      return "Name should be less than 20 characters";
                     }
                     return null;
                   },
@@ -83,11 +91,20 @@ class _Signup1State extends State<Signup1> {
 
                 //address textfeild
                 TextFormField( 
+                   validator: (String value) {
+                    if (value.isEmpty) {
+                      return "Please enter your Address";
+                    }
+                     if(value.length>20){
+                      return "Address shouldn't be more than 20 characters";
+                    }
+                    return null;
+                  },
                   controller: _addressController,
                   decoration: InputDecoration(
                     hintText: 'Enter your address',
                     prefixIcon: Icon(LineAwesomeIcons.address_card_1),
-                    focusedBorder: OutlineInputBorder(
+                    border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.green),
                         borderRadius: BorderRadius.all(Radius.circular(40))),
                            ),
@@ -98,11 +115,20 @@ class _Signup1State extends State<Signup1> {
 
                 //ward number Textfeild
                 TextFormField( 
+                   validator: (String value) {
+                    if (value.isEmpty) {
+                      return "Please enter your Ward Number";
+                    }
+                     if(value.length>2){
+                      return "Ward should be less than 2 characters";
+                    }
+                    return null;
+                  },
                   controller: _wardController,
                   decoration: InputDecoration(
-                    hintText: 'Enter your Ward number',
+                    hintText: 'Enter your ward number',
                     prefixIcon: Icon(LineAwesomeIcons.location_arrow),
-                    focusedBorder: OutlineInputBorder(
+                    border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.green),
                         borderRadius: BorderRadius.all(Radius.circular(40))),
                            ),
@@ -115,11 +141,21 @@ class _Signup1State extends State<Signup1> {
 
                 //mobile number textfeild
                TextFormField( 
+                  validator: (String value){
+                    if (value.isEmpty) {
+                      return "Please enter your mobile number";
+                      
+                    }
+                    if(value.length<10 || value.length> 10){
+                      return "Please enter valid mobile number";
+                    }
+                    return null;
+                  },
                   controller: _mobileNumberController,
                   decoration: InputDecoration(
                     hintText: 'Enter your mobile number',
                     prefixIcon: Icon(LineAwesomeIcons.mobile_phone),
-                    focusedBorder: OutlineInputBorder(
+                    border: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.green),
                         borderRadius: BorderRadius.all(Radius.circular(40))),
                            ),
@@ -131,34 +167,84 @@ class _Signup1State extends State<Signup1> {
                 ),
 
                 //Email Textfeild
-                // TextFormField( 
-                //   controller: _emailController,
-                //   decoration: InputDecoration(
-                //     hintText: 'Enter your email',
-                //     prefixIcon: Icon(Icons.mail_outline_rounded),
-                //     focusedBorder: OutlineInputBorder(
-                //         borderSide: BorderSide(color: Colors.green),
-                //         borderRadius: BorderRadius.all(Radius.circular(40))),
-                //            ),
-                //   keyboardType: TextInputType.emailAddress,
-                //     style: TextStyle(fontFamily: 'SFProText',fontSize: 18)
-                // ),
-                CustomTextField(
+                TextFormField( 
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return "Please enter email";
+                    }
+                    return null;
+                  },
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    hintText: 'Enter your email',
+                    prefixIcon: Icon(Icons.mail_outline_rounded),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                           ),
                   keyboardType: TextInputType.emailAddress,
-                  hintText: 'Your Email',
-                  onChanged: (value) => data.email = value,
+                    style: TextStyle(fontFamily: 'SFProText',fontSize: 18),
+                    onChanged: (value) => data.email = value,
+
                 ),
-                const SizedBox(height: 15),
+                // CustomTextField(
+                //   validator: (String value) {
+                //     if (value.isEmpty) {
+                //       return "Please enter email";
+                //     }
+                //     return null;
+                //   },
+                //   keyboardType: TextInputType.emailAddress,
+                //   hintText: 'Your Email',
+                //   onChanged: (value) => data.email = value,
+                // ),
+                const SizedBox(height: 12),
 
                 //Password Textfeild
-                CustomTextField1(
-                  hintText: 'Password',
-                  onChanged: (value) => data.password = value,
+                // CustomTextField1(
+                //   hintText: 'Password',
+                //   onChanged: (value) => data.password = value,
+                // ),
+
+                    TextFormField( 
+                  validator: (String value) {
+                    if (value.isEmpty) {
+                      return "Please enter password";
+                    }
+                    if(value.length<6){
+                      return "Password length must be atleast 6";
+                    }
+                    if(value.length>15){
+                      return"Password length must be less than 15";
+                    }
+                    return null;
+                  },
+                  obscureText: _obscureText,
+                controller: _passwordController,
+                decoration: InputDecoration(
+                hintText: 'Enter your password',
+                prefixIcon: Icon(Icons.vpn_key_outlined),
+                 suffixIcon: IconButton(
+                icon: Icon(
+                    _obscureText ? Icons.visibility : Icons.visibility_off),
+                onPressed: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                }),
+                border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.green),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                           ),
+                  keyboardType: TextInputType.text,
+                    style: TextStyle(fontFamily: 'SFProText',fontSize: 18),
+                    onChanged: (value) => data.password = value,
+                    
+
                 ),
 
-                SizedBox(
-                  height: 12,
-                ),
+
+              
 
                 const SizedBox(height: 25),
                 //SignupButton
@@ -167,6 +253,7 @@ class _Signup1State extends State<Signup1> {
                   onPressed: () {
                     
                     //saveUserProfile();
+                   if(_formkey.currentState.validate()){
                     data.createAccountWithEmailAndPassword().then((signedInUser) {
                       _firestore.collection('Users').add({
                         'email': data.email,
@@ -227,6 +314,7 @@ class _Signup1State extends State<Signup1> {
                                 ));
                       }
                     });
+                  } else return "UnSucessful";
                   },
                 ),
                 const SizedBox(height: 35),
@@ -248,7 +336,7 @@ class _Signup1State extends State<Signup1> {
     String address = _addressController.text;
     String ward = _wardController.text;
     String mobilenumber = _mobileNumberController.text;
-  //  String email = _emailController.text;
+   String email = _emailController.text;
     String id = userid;
     // String password = passwordController.text;
 
@@ -257,7 +345,7 @@ class _Signup1State extends State<Signup1> {
       'Address': address,
       'Ward': ward,
       'MobileNumber': mobilenumber,
-      //'Email': email,
+      'Email': email,
       'UserID':id,
     };
     _ref.push().set(userprofile);

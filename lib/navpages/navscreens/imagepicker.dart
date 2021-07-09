@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -15,6 +17,11 @@ class UpdatePic extends StatefulWidget {
       }
       
       class _UpdatePicState extends State<UpdatePic> {
+         DatabaseReference _ref;
+         void initState() {
+         super.initState();
+         _ref = FirebaseDatabase.instance.reference().child('UserProfileImage');
+  }
         String imageDownloadUrl;
         File _image;
         Future getImage() async{
@@ -62,9 +69,9 @@ Future uploadImageToFirebase() async {
      ),
      body: Builder(builder: (context)=>
      Container(
-       margin: EdgeInsets.only(left:70),
+   //   margin: EdgeInsets.only(left:70),
        child:Column(
-         //mainAxisAlignment: MainAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.center,
          children: [
 
          SizedBox(height: 20,),
@@ -77,7 +84,7 @@ Future uploadImageToFirebase() async {
                           width: 180.0,
                           height: 180.0,
                           child:(_image!=null)?Image.file(_image,fit: BoxFit.scaleDown,)
-                          :Image.network("https://images.unsplash.com/photo-1502164980785-f8aa41d53611?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                          :Image.asset("assets/images/user.png",
                           fit: BoxFit.fill,),
                ) ),
          ),
@@ -86,17 +93,30 @@ Future uploadImageToFirebase() async {
            getImage();
          }
           ),
+          
+           Row(    
+             mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.add_a_photo),
+                      ElevatedButton(onPressed: (){
+                     getImage();
+                    }, child: Text("Browse photos from your device",
+                    style: TextStyle(fontFamily: 'SFProText',fontSize: 16.0),),
+                     style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),),),
+         ]
+           ),
+         
 
-          SizedBox(height:50),
+          SizedBox(height:45.0),
             ElevatedButton(
                     onPressed: () {
-                   uploadImageToFirebase();
+                   uploadImageToFirebase().whenComplete(() => savetoRealTimeDB(imageDownloadUrl));
                    
                     },
 
                     child: Text(
                       'Submit',
-                      style: TextStyle(color: Colors.white, fontSize: 16.0),
+                      style: TextStyle(color: Colors.white, fontSize: 16.0, fontFamily: 'SFProText',),
                     ),
                   ),
          
@@ -104,6 +124,18 @@ Future uploadImageToFirebase() async {
      )),
       
     );
+  }
+
+  savetoRealTimeDB(String imageurl) {
+     FirebaseAuth auth = FirebaseAuth.instance;
+    String imageurl = imageDownloadUrl;
+    String userid = auth.currentUser.uid;
+    Map<String, String> userprofileimage={
+     'profileimageurl': imageurl,
+     'userid': userid
+    };
+    _ref.push().set(userprofileimage);
+
   }
 
 }

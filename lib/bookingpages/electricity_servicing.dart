@@ -32,9 +32,7 @@ class ElectricityBooking extends StatefulWidget {
 
 class _ElectricityBookingState extends State<ElectricityBooking> {
   bool bookingstatus = true;
-  TextEditingController
-      _descriptionController, _nameController,
-      _mobilenumberController;
+  TextEditingController _descriptionController, _nameController, _mobilenumberController;
   DatabaseReference _ref;
   @override
   void initState() {
@@ -301,8 +299,9 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
 
 Widget buildUserProfile({Map userprofile}){
   AuthService data = Provider.of<AuthService>(context);
-  return SafeArea(child: 
-  Container(alignment: Alignment.center,
+  return SafeArea(
+  child: 
+Container(alignment: Alignment.center,
       child: Column(children: [
       Text(userprofile['Name']),
       SizedBox(height:10),

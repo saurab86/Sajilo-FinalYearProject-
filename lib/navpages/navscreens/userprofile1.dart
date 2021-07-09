@@ -53,8 +53,11 @@ class _UserProfile1State extends State<UserProfile1> {
                         child: new SizedBox(
                           width: 180.0,
                           height: 180.0,
-                          child:
-                          Image.asset('assets/images/user.png',fit: BoxFit.fill,)
+                          child:(userprofile['profilepic']!=null)?Image.network(userprofile['profilepic']):
+                          Image.asset("assets/images/user.png")
+
+//                           Image.network("https://firebasestorage.googleapis.com/v0/b/sajilo-3cf2f.appspot.com/o/images%2Fstorage%2Femulated%2F0%2FDCIM%2Fwp2560566.jpg?alt=media&token=ff29c558-0e5a-4935-9bb3-0f5e5cd013ff"
+// ,fit: BoxFit.fitHeight,)
                           // Image.network(userprofile['profilepic'],
                           // fit: BoxFit.fill,),
                ) ),

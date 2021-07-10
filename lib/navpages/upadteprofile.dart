@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:sajilo/navpages/navscreens/userprofile1.dart';
+import 'package:sajilo/navpages/navscreens/navhandling.dart';
 import 'package:sajilo/services/auth.dart';
 
 // ignore: must_be_immutable
@@ -247,7 +247,7 @@ void initState(){
                               textColor: Colors.white,
                               fontSize: 16.0)
                           .then((value) => Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (_) =>UserProfile1())));
+                              MaterialPageRoute(builder: (_) =>NavHome())));
                     },
                     child: Text(
                       'Ok',

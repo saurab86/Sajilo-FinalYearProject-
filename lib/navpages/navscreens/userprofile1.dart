@@ -72,7 +72,7 @@ class _UserProfile1State extends State<UserProfile1> {
             //  )
           ]),
           IconButton(icon: Icon(LineAwesomeIcons.camera), onPressed: () {
-         Navigator.push(context, MaterialPageRoute(builder: (_)=>UpdatePic()));
+         Navigator.push(context, MaterialPageRoute(builder: (_)=>UpdatePic(profileKey: userprofile['key'],)));
           }),
           SizedBox(
             height: 14.0,

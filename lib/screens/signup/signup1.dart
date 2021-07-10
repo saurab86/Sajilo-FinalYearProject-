@@ -336,8 +336,9 @@ class _Signup1State extends State<Signup1> {
     String address = _addressController.text;
     String ward = _wardController.text;
     String mobilenumber = _mobileNumberController.text;
-   String email = _emailController.text;
+    String email = _emailController.text;
     String id = userid;
+    String profilepic = "https://firebasestorage.googleapis.com/v0/b/sajilo-3cf2f.appspot.com/o/user.png?alt=media&token=8bb7f6a3-fed4-46c8-ad1c-d73054086723";
     // String password = passwordController.text;
 
     Map<String, String> userprofile = {
@@ -347,6 +348,8 @@ class _Signup1State extends State<Signup1> {
       'MobileNumber': mobilenumber,
       'Email': email,
       'UserID':id,
+      'profilepic': profilepic
+
     };
     _ref.push().set(userprofile);
   }

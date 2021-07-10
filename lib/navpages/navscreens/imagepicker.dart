@@ -1,13 +1,19 @@
+// ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:sajilo/navpages/navscreens/navhandling.dart';
 
 
+// ignore: must_be_immutable
 class UpdatePic extends StatefulWidget {
+   String profileKey;
+   UpdatePic({this.profileKey});
   @override
   _UpdatePicState createState() => _UpdatePicState();
 
@@ -20,7 +26,7 @@ class UpdatePic extends StatefulWidget {
          DatabaseReference _ref;
          void initState() {
          super.initState();
-         _ref = FirebaseDatabase.instance.reference().child('UserProfileImage');
+         _ref = FirebaseDatabase.instance.reference().child('UserProfile');
   }
         String imageDownloadUrl;
         File _image;
@@ -110,7 +116,8 @@ Future uploadImageToFirebase() async {
           SizedBox(height:45.0),
             ElevatedButton(
                     onPressed: () {
-                   uploadImageToFirebase().whenComplete(() => savetoRealTimeDB(imageDownloadUrl));
+                   uploadImageToFirebase().whenComplete(() => savetoRealTimeDB());
+  
                    
                     },
 
@@ -126,15 +133,54 @@ Future uploadImageToFirebase() async {
     );
   }
 
-  savetoRealTimeDB(String imageurl) {
-     FirebaseAuth auth = FirebaseAuth.instance;
+  savetoRealTimeDB() {
+    // FirebaseAuth auth = FirebaseAuth.instance;
     String imageurl = imageDownloadUrl;
-    String userid = auth.currentUser.uid;
+   //// String userid = auth.currentUser.uid;
     Map<String, String> userprofileimage={
-     'profileimageurl': imageurl,
-     'userid': userid
+     'profilepic': imageurl,
+     //'userid': userid
     };
-    _ref.push().set(userprofileimage);
+    //_ref.push().set(userprofileimage);
+    _ref.child(widget.profileKey).update(userprofileimage).then((value) =>
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (_) => AlertDialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(14.0)),
+              backgroundColor: Colors.blueGrey[200],
+              title: new Text(
+                "ThankYou",
+                style:
+                    TextStyle(fontFamily: 'Rubik', backgroundColor: Colors.red),
+                textAlign: TextAlign.center,
+              ),
+              content: new Text(
+                "Profile pic Updated Successfully.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16.0),
+              ),
+              actions: <Widget>[
+                TextButton(
+                    onPressed: () {
+                      Fluttertoast.showToast(
+                              msg: "Updated Successfully",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 4,
+                              backgroundColor: Colors.teal,
+                              textColor: Colors.white,
+                              fontSize: 16.0)
+                          .then((value) => Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (_) =>NavHome())));
+                    },
+                    child: Text(
+                      'Ok',
+                      style: TextStyle(fontSize: 16.0),
+                    ))
+              ],
+            )));
 
   }
 

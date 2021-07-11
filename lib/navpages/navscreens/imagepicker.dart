@@ -95,15 +95,12 @@ Future uploadImageToFirebase() async {
                ) ),
          ),
          SizedBox(height:15),
-         IconButton(icon: Icon(LineAwesomeIcons.camera), onPressed: () {
-           getImage();
-         }
-          ),
+
           
            Row(    
              mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.add_a_photo),
+                      Icon(LineAwesomeIcons.retro_camera),
                       ElevatedButton(onPressed: (){
                      getImage();
                     }, child: Text("Browse photos from your device",

@@ -71,7 +71,7 @@ class _UserProfile1State extends State<UserProfile1> {
             //     child: Container(child: IconButton(icon: Icon(LineAwesomeIcons.camera), onPressed: (){}),),
             //  )
           ]),
-          IconButton(icon: Icon(LineAwesomeIcons.camera), onPressed: () {
+          IconButton(icon: Icon(LineAwesomeIcons.retro_camera), onPressed: () {
          Navigator.push(context, MaterialPageRoute(builder: (_)=>UpdatePic(profileKey: userprofile['key'],)));
           }),
           SizedBox(

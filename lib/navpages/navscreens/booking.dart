@@ -14,20 +14,33 @@ class Booking extends StatefulWidget {
 }
 
 class _BookingState extends State<Booking> {
+ 
+  TextEditingController _feedbackController;
+  DatabaseReference _feedbackref;
   Query ref;
   DatabaseReference reference =
       FirebaseDatabase.instance.reference().child('BookingInfo');
   void initState() {
     super.initState();
+    _feedbackController = TextEditingController();
     ref = FirebaseDatabase.instance.reference().child("BookingInfo");
     ref = FirebaseDatabase.instance
         .reference()
         .child("BookingInfo")
         .orderByChild("UserID")
         .equalTo(FirebaseAuth.instance.currentUser.uid);
+    _feedbackref = FirebaseDatabase.instance.reference().child('UserFeedback');
+    
+    
+  }
+   void dispose() {
+    
+    _feedbackController.dispose();
+    super.dispose();
   }
 
   Widget _buildBookingItem({Map bookinginfo}) {
+
     if (bookinginfo['BookingStatus'] == 'Pending') {
       return SafeArea(
         child: Container(
@@ -414,7 +427,7 @@ class _BookingState extends State<Booking> {
     
     
     
-    else {
+    else { 
       return SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -635,6 +648,7 @@ class _BookingState extends State<Booking> {
 
   _showDeleteDialog({Map bookinginfo}) {
     showDialog(
+      barrierDismissible: false,
         context: context,
         builder: (_) => AlertDialog(
               shape: RoundedRectangleBorder(
@@ -694,7 +708,7 @@ class _BookingState extends State<Booking> {
 
 
   _serviceStatus({Map bookinginfo}){
-
+    
     showDialog(
         barrierDismissible: false,
         context: context,
@@ -709,16 +723,28 @@ class _BookingState extends State<Booking> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              content: new Text(
-                "Did your service completed by service Provider?",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16.0, fontFamily: 'Newsreader'),
-              ),
+              content: TextFormField(
+                    controller: _feedbackController,
+                    cursorColor: Colors.white,
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_circle),
+                      hintText: 'Give any feedback before clicking yes',
+                      hintStyle:   TextStyle(fontFamily: 'Newsreader',fontSize: 16),
+                      labelText: 'Your feedback',
+                      labelStyle: TextStyle(color: Colors.white,fontFamily: 'Newsreader',fontSize: 16),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
+                          borderRadius: BorderRadius.all(Radius.circular(30))),
+                      border: OutlineInputBorder(borderSide: BorderSide()),
+                    ),
+                    maxLines: 5,
+                  ),
               actions: <Widget>[
                 TextButton(
                     onPressed: () {
                       updateServiceStatus(
                           bookinginfo['key'], bookinginfo['serviceStatus']);
+                          userfeedBack();
                     },
                     child: Text(
                       'Yes',
@@ -735,7 +761,7 @@ class _BookingState extends State<Booking> {
                       Navigator.pop(context);
                     },
                     child: Text(
-                      'No',
+                      'Cancel',
                       style: TextStyle(
                           fontFamily: 'Newsreader',
                           fontSize: 16.0,
@@ -747,6 +773,18 @@ class _BookingState extends State<Booking> {
   updateServiceStatus(String dbk, bookinginfo) async{
               await reference.child('$dbk').update({'serviceStatus':'Completed'}).whenComplete(() => 
               Navigator.pop(context));
+            }
+
+            userfeedBack(){
+              FirebaseAuth auth = FirebaseAuth.instance;
+              String userfeedback = _feedbackController.text;
+              Map<String,String> feedback ={
+                'Userfeedback': userfeedback,
+                'email':auth.currentUser.email,
+              'userID':auth.currentUser.uid,
+              };
+              _feedbackref.push().set(feedback).then((value) => 
+              _feedbackController.clear());
             }
 
   @override

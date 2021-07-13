@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screen_scaler/flutter_screen_scaler.dart';
 
+// ignore: unused_import
 import 'components/divider.dart';
 import 'components/signin_buttons.dart';
+// ignore: unused_import
 import 'components/social_media_buttons.dart';
 
 
@@ -58,8 +60,8 @@ class _WelcomeState extends State<Welcome> {
               SizedBox(height: scale.getHeight(1)),
               SignButtons(),
               const SizedBox(height: 25),
-              MyDivider(scale),
-              ConnectWithSocialAccount(),
+              
+              //ConnectWithSocialAccount(),
               SizedBox(
                 height: 18.0,
               ),

@@ -241,8 +241,9 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
     String service = "Bike reparing & Servicing";
     String emailid = a;
     String bookingstatus = 'Pending';
-     String y = now.toString();
-      String servicestatus = "InProgress";
+    String y = now.toString();
+    String servicestatus = "InProgress";
+    String acceptedby = "";
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -255,6 +256,7 @@ class _BikeReparingServiceState extends State<BikeReparingService> {
       'BookingStatus': bookingstatus,
       'BookedTimeAndDate':y,
       'serviceStatus': servicestatus,
+      'AcceptedBy':acceptedby,
     };
     _ref.push().set(bookinginfo);
 

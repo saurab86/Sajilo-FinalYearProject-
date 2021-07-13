@@ -45,7 +45,7 @@ class _BookingState extends State<Booking> {
       return SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          color: Colors.lightBlue[100],
+           color: Colors.cyan,
           margin: EdgeInsets.symmetric(vertical: 8.0),
           padding: EdgeInsets.all(8.0),
           height: 280.0,
@@ -412,10 +412,12 @@ class _BookingState extends State<Booking> {
                       ),
                     )
                   ],
-                ),
+                ),  
+
                 SizedBox(height: 12,),
                 Text(" Service has been Sucessfully Completed! ",style: TextStyle(fontFamily: 'Newsreader',fontSize: 18,color: Colors.green[700],
-              ),),
+              ),)
+               
               ],
             ),
           ),
@@ -431,7 +433,7 @@ class _BookingState extends State<Booking> {
       return SafeArea(
         child: Container(
           width: MediaQuery.of(context).size.width,
-          color: Colors.lightBlue[100],
+          color: Colors.teal[600],
           margin: EdgeInsets.symmetric(vertical: 8.0),
           padding: EdgeInsets.all(8.0),
           height: 320.0,
@@ -776,6 +778,7 @@ class _BookingState extends State<Booking> {
             }
 
             userfeedBack(){
+              if(_feedbackController.text.isNotEmpty){
               FirebaseAuth auth = FirebaseAuth.instance;
               String userfeedback = _feedbackController.text;
               Map<String,String> feedback ={
@@ -785,6 +788,36 @@ class _BookingState extends State<Booking> {
               };
               _feedbackref.push().set(feedback).then((value) => 
               _feedbackController.clear());
+            }
+            else{
+             showDialog(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(14.0)),
+                                  backgroundColor: Colors.blueGrey[200],
+                                  title: new Text(
+                                    "Error",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  content: new Text(
+                                    "Please give feedback.",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          'OK',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ))
+                                  ],
+                                ));
+            }
             }
 
   @override

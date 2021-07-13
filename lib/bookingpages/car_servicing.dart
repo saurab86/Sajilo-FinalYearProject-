@@ -223,6 +223,7 @@ class _CarBookingState extends State<CarBooking> {
     String bookingstatus = 'Pending';
     String y = now.toString();
     String servicestatus = "InProgress";
+    String acceptedby = ""; 
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -235,6 +236,7 @@ class _CarBookingState extends State<CarBooking> {
       'BookingStatus': bookingstatus,
       'BookedTimeAndDate':y,
       'serviceStatus': servicestatus,
+      'AcceptedBy':acceptedby,
     };
     _ref.push().set(bookinginfo);
 

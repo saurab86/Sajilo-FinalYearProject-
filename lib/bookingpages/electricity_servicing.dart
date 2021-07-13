@@ -245,7 +245,7 @@ class _ElectricityBookingState extends State<ElectricityBooking> {
                     // color: Colors.redAccent,
                     onPressed: () {
                       if (
-                          _descriptionController.text.isEmpty
+                          _descriptionController.text.isEmpty || _nameController.text.isEmpty || _mobilenumberController.text.isEmpty
                           
                           ) {
                         showDialog(
@@ -329,6 +329,7 @@ Container(alignment: Alignment.center,
       x = "Accepted";
     }
     String servicestatus = "InProgress";
+    String acceptedby = "";
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -342,6 +343,7 @@ Container(alignment: Alignment.center,
       'BookingStatus': x,
       'BookedTimeAndDate': y,
       'serviceStatus': servicestatus,
+      'AcceptedBy':acceptedby,
     };
     _ref.push().set(bookinginfo);
 

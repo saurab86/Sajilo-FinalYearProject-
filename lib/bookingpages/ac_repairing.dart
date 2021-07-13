@@ -288,6 +288,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
       x = "Accepted";
     }
     String servicestatus = "InProgress";
+     String acceptedby = "";
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -301,6 +302,7 @@ class _AcRepairServiceState extends State<AcRepairService> {
       'BookedTimeAndDate': y,
       'Problem Description': acdescription,
       'serviceStatus': servicestatus,
+      'AcceptedBy':acceptedby,
     };
     _ref.push().set(bookinginfo);
 

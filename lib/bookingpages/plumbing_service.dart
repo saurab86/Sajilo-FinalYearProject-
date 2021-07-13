@@ -276,6 +276,7 @@ class _PlumbingServiceState extends State<PlumbingService> {
       x = "Accepted";
     }
     String servicestatus = "InProgress";
+    String acceptedby = "";
 
     Map<String, String> bookinginfo = {
       'name': name,
@@ -289,6 +290,8 @@ class _PlumbingServiceState extends State<PlumbingService> {
       'BookingStatus': x,
       'BookedTimeAndDate': y,
       'serviceStatus': servicestatus,
+      'AcceptedBy':acceptedby,
+      
     };
     _ref.push().set(bookinginfo);
 

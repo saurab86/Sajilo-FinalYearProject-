@@ -246,6 +246,7 @@ class _HaircutBookingState extends State<HaircutBooking> {
     String bookingstatus = 'Pending';
     String y = now.toString();
     String servicestatus = "InProgress";
+     String acceptedby = "";
     Map<String, String> bookinginfo = {
       'name': name,
       'address': address,
@@ -257,6 +258,8 @@ class _HaircutBookingState extends State<HaircutBooking> {
       'BookingStatus': bookingstatus,
       'BookedTimeAndDate':y,
       'serviceStatus': servicestatus,
+      'AcceptedBy':acceptedby,
+
     };
     _ref.push().set(bookinginfo);
     showDialog(

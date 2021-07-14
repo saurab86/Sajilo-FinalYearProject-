@@ -416,8 +416,13 @@ class _BookingState extends State<Booking> {
 
                 SizedBox(height: 12,),
                 Text(" Service has been Sucessfully Completed! ",style: TextStyle(fontFamily: 'Newsreader',fontSize: 18,color: Colors.green[700],
-              ),)
-               
+              ),),
+                SizedBox(height: 8,),
+                  Row(children: [
+                Text('Accepted by:',style: TextStyle(fontFamily: 'Newsreader',fontSize: 16),),
+                SizedBox(width: 5,),
+                Text(bookinginfo['AcceptedBy'],style: TextStyle(fontFamily: 'Newsreader',fontSize: 16),)
+              ],)
               ],
             ),
           ),
@@ -637,7 +642,13 @@ class _BookingState extends State<Booking> {
                     }, child: Text("Service Completed",style: TextStyle(fontFamily: 'Newsreader'),),
                     style: ElevatedButton.styleFrom(primary:Colors.blueGrey),)
                 ],),
+
                 
+                  Row(children: [
+                Text('Accepted by:',style: TextStyle(fontFamily: 'Newsreader',fontSize: 16),),
+                SizedBox(width: 5,),
+                Text(bookinginfo['AcceptedBy'],style: TextStyle(fontFamily: 'Newsreader',fontSize: 16),)
+              ],)
               ],
             ),
           ),

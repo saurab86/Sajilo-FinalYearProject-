@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -61,18 +62,24 @@ class _UserProfile1State extends State<UserProfile1> {
                           // Image.network(userprofile['profilepic'],
                           // fit: BoxFit.fill,),
                ) ),
-              //  backgroundImage:
-               
-              //  AssetImage('assets/images/IMG_57451.jpg')
-               
+             
             ),
-            //  Align(
-            //    alignment: Alignment.bottomRight,
-            //     child: Container(child: IconButton(icon: Icon(LineAwesomeIcons.camera), onPressed: (){}),),
-            //  )
+            
           ]),
           IconButton(icon: Icon(LineAwesomeIcons.retro_camera), onPressed: () {
-         Navigator.push(context, MaterialPageRoute(builder: (_)=>UpdatePic(profileKey: userprofile['key'],)));
+           final act = CupertinoActionSheet(
+             title: Text("Update Picture",style: TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Newsreader',fontSize: 20)),
+             message: Text("Do you want to update profile picture?",style: TextStyle(fontFamily: 'Newsreader',fontSize: 18),),
+             actions: [
+               CupertinoActionSheetAction(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>UpdatePic(profileKey: userprofile['key'],)));
+               }, 
+               child: Text("Change Picture"))
+             ],
+             cancelButton: CupertinoActionSheetAction(onPressed: (){Navigator.pop(context);},child: Text("Cancel"),),
+           );
+            showCupertinoModalPopup(context: context, builder: (BuildContext context)=> act);
+       
           }),
           SizedBox(
             height: 14.0,
@@ -180,7 +187,7 @@ class _UserProfile1State extends State<UserProfile1> {
             ),
             
              LogoutButton(data: data, scale: scale),
-   
+                
           ]),
           // SizedBox(height: 10),
           // ElevatedButton(onPressed: (){

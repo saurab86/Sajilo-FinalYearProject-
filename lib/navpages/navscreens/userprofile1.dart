@@ -207,8 +207,6 @@ class _UserProfile1State extends State<UserProfile1> {
 
   @override
   Widget build(BuildContext context) {
-
-
     // AuthService data = Provider.of<AuthService>(context);
     return Scaffold(
       appBar: null,

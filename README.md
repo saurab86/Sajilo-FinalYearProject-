@@ -11,7 +11,7 @@
 **Splash Screen**
 <img src="https://user-images.githubusercontent.com/68777795/139691790-b5259162-c349-4109-8a87-561e7b877090.jpg"
      alt="Markdown Monster icon"
-     style="float: left; margin-right: 10px;" width:30vw; />
+     style="float: left; margin-right: 10px; width:30vw;"  />
 
 ![Screenshot_20211101-203229](https://user-images.githubusercontent.com/68777795/139691790-b5259162-c349-4109-8a87-561e7b877090.jpg)
 

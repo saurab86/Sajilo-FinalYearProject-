@@ -122,13 +122,10 @@ class _MainHomeState extends State<MainHome> {
                     ),
                     SizedBox(height: 8,),
                     Container(
-                      child: Text(
+                       child: Text(
                         services[index],
-                        style: TextStyle(
-                          fontFamily: 'Newsreader',
-                          fontSize: 17,
-                          fontWeight: FontWeight.w400,
-                        ),
+                        style: GoogleFonts.ubuntu(
+                            fontSize: 17, fontWeight: FontWeight.w400),
                         textAlign: TextAlign.center,
                       ),
                     ),
